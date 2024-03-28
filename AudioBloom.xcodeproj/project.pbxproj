@@ -94,9 +94,11 @@
 		5830E9E22BB5E46100ED6DEF /* AudioBloom */ = {
 			isa = PBXGroup;
 			children = (
-				5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */,
-				5830E9E52BB5E46100ED6DEF /* ContentView.swift */,
-				5830E9E72BB5E46200ED6DEF /* Assets.xcassets */,
+				5830EA0F2BB5E73200ED6DEF /* Root */,
+				5830EA102BB5E73700ED6DEF /* Data */,
+				5830EA112BB5E74100ED6DEF /* Network */,
+				5830EA122BB5E74800ED6DEF /* Extensions */,
+				5830EA132BB5E77F00ED6DEF /* Resources */,
 				5830E9E92BB5E46200ED6DEF /* Preview Content */,
 			);
 			path = AudioBloom;
@@ -125,6 +127,44 @@
 				5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */,
 			);
 			path = AudioBloomUITests;
+			sourceTree = "<group>";
+		};
+		5830EA0F2BB5E73200ED6DEF /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */,
+				5830E9E52BB5E46100ED6DEF /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		5830EA102BB5E73700ED6DEF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5830EA112BB5E74100ED6DEF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5830EA122BB5E74800ED6DEF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5830EA132BB5E77F00ED6DEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9E72BB5E46200ED6DEF /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

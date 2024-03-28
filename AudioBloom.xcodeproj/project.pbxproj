@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5830E9E42BB5E46100ED6DEF /* AudioBloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */; };
+		5830E9E62BB5E46100ED6DEF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9E52BB5E46100ED6DEF /* ContentView.swift */; };
+		5830E9E82BB5E46200ED6DEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5830E9E72BB5E46200ED6DEF /* Assets.xcassets */; };
+		5830E9EB2BB5E46200ED6DEF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5830E9EA2BB5E46200ED6DEF /* Preview Assets.xcassets */; };
+		5830E9F52BB5E46A00ED6DEF /* AudioBloomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */; };
+		5830E9FF2BB5E46A00ED6DEF /* AudioBloomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */; };
+		5830EA012BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5830E9F12BB5E46A00ED6DEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5830E9D82BB5E46100ED6DEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5830E9DF2BB5E46100ED6DEF;
+			remoteInfo = AudioBloom;
+		};
+		5830E9FB2BB5E46A00ED6DEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5830E9D82BB5E46100ED6DEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5830E9DF2BB5E46100ED6DEF;
+			remoteInfo = AudioBloom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5830E9E02BB5E46100ED6DEF /* AudioBloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioBloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomApp.swift; sourceTree = "<group>"; };
+		5830E9E52BB5E46100ED6DEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5830E9E72BB5E46200ED6DEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5830E9EA2BB5E46200ED6DEF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5830E9F02BB5E46A00ED6DEF /* AudioBloomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioBloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomTests.swift; sourceTree = "<group>"; };
+		5830E9FA2BB5E46A00ED6DEF /* AudioBloomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioBloomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITests.swift; sourceTree = "<group>"; };
+		5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5830E9DD2BB5E46100ED6DEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9ED2BB5E46A00ED6DEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9F72BB5E46A00ED6DEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5830E9D72BB5E46100ED6DEF = {
+			isa = PBXGroup;
+			children = (
+				5830E9E22BB5E46100ED6DEF /* AudioBloom */,
+				5830E9F32BB5E46A00ED6DEF /* AudioBloomTests */,
+				5830E9FD2BB5E46A00ED6DEF /* AudioBloomUITests */,
+				5830E9E12BB5E46100ED6DEF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5830E9E12BB5E46100ED6DEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9E02BB5E46100ED6DEF /* AudioBloom.app */,
+				5830E9F02BB5E46A00ED6DEF /* AudioBloomTests.xctest */,
+				5830E9FA2BB5E46A00ED6DEF /* AudioBloomUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5830E9E22BB5E46100ED6DEF /* AudioBloom */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */,
+				5830E9E52BB5E46100ED6DEF /* ContentView.swift */,
+				5830E9E72BB5E46200ED6DEF /* Assets.xcassets */,
+				5830E9E92BB5E46200ED6DEF /* Preview Content */,
+			);
+			path = AudioBloom;
+			sourceTree = "<group>";
+		};
+		5830E9E92BB5E46200ED6DEF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9EA2BB5E46200ED6DEF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5830E9F32BB5E46A00ED6DEF /* AudioBloomTests */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */,
+			);
+			path = AudioBloomTests;
+			sourceTree = "<group>";
+		};
+		5830E9FD2BB5E46A00ED6DEF /* AudioBloomUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */,
+				5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */,
+			);
+			path = AudioBloomUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5830E9DF2BB5E46100ED6DEF /* AudioBloom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5830EA042BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloom" */;
+			buildPhases = (
+				5830E9DC2BB5E46100ED6DEF /* Sources */,
+				5830E9DD2BB5E46100ED6DEF /* Frameworks */,
+				5830E9DE2BB5E46100ED6DEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioBloom;
+			productName = AudioBloom;
+			productReference = 5830E9E02BB5E46100ED6DEF /* AudioBloom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5830E9EF2BB5E46A00ED6DEF /* AudioBloomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5830EA072BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloomTests" */;
+			buildPhases = (
+				5830E9EC2BB5E46A00ED6DEF /* Sources */,
+				5830E9ED2BB5E46A00ED6DEF /* Frameworks */,
+				5830E9EE2BB5E46A00ED6DEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5830E9F22BB5E46A00ED6DEF /* PBXTargetDependency */,
+			);
+			name = AudioBloomTests;
+			productName = AudioBloomTests;
+			productReference = 5830E9F02BB5E46A00ED6DEF /* AudioBloomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5830E9F92BB5E46A00ED6DEF /* AudioBloomUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5830EA0A2BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloomUITests" */;
+			buildPhases = (
+				5830E9F62BB5E46A00ED6DEF /* Sources */,
+				5830E9F72BB5E46A00ED6DEF /* Frameworks */,
+				5830E9F82BB5E46A00ED6DEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5830E9FC2BB5E46A00ED6DEF /* PBXTargetDependency */,
+			);
+			name = AudioBloomUITests;
+			productName = AudioBloomUITests;
+			productReference = 5830E9FA2BB5E46A00ED6DEF /* AudioBloomUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5830E9D82BB5E46100ED6DEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					5830E9DF2BB5E46100ED6DEF = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					5830E9EF2BB5E46A00ED6DEF = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 5830E9DF2BB5E46100ED6DEF;
+					};
+					5830E9F92BB5E46A00ED6DEF = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 5830E9DF2BB5E46100ED6DEF;
+					};
+				};
+			};
+			buildConfigurationList = 5830E9DB2BB5E46100ED6DEF /* Build configuration list for PBXProject "AudioBloom" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5830E9D72BB5E46100ED6DEF;
+			productRefGroup = 5830E9E12BB5E46100ED6DEF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5830E9DF2BB5E46100ED6DEF /* AudioBloom */,
+				5830E9EF2BB5E46A00ED6DEF /* AudioBloomTests */,
+				5830E9F92BB5E46A00ED6DEF /* AudioBloomUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5830E9DE2BB5E46100ED6DEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5830E9EB2BB5E46200ED6DEF /* Preview Assets.xcassets in Resources */,
+				5830E9E82BB5E46200ED6DEF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9EE2BB5E46A00ED6DEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9F82BB5E46A00ED6DEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5830E9DC2BB5E46100ED6DEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5830E9E62BB5E46100ED6DEF /* ContentView.swift in Sources */,
+				5830E9E42BB5E46100ED6DEF /* AudioBloomApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9EC2BB5E46A00ED6DEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5830E9F52BB5E46A00ED6DEF /* AudioBloomTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5830E9F62BB5E46A00ED6DEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5830E9FF2BB5E46A00ED6DEF /* AudioBloomUITests.swift in Sources */,
+				5830EA012BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5830E9F22BB5E46A00ED6DEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5830E9DF2BB5E46100ED6DEF /* AudioBloom */;
+			targetProxy = 5830E9F12BB5E46A00ED6DEF /* PBXContainerItemProxy */;
+		};
+		5830E9FC2BB5E46A00ED6DEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5830E9DF2BB5E46100ED6DEF /* AudioBloom */;
+			targetProxy = 5830E9FB2BB5E46A00ED6DEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5830EA022BB5E46A00ED6DEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5830EA032BB5E46A00ED6DEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5830EA052BB5E46A00ED6DEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AudioBloom/Preview Content\"";
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5830EA062BB5E46A00ED6DEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AudioBloom/Preview Content\"";
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5830EA082BB5E46A00ED6DEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioBloom.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AudioBloom";
+			};
+			name = Debug;
+		};
+		5830EA092BB5E46A00ED6DEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioBloom.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AudioBloom";
+			};
+			name = Release;
+		};
+		5830EA0B2BB5E46A00ED6DEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloomUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AudioBloom;
+			};
+			name = Debug;
+		};
+		5830EA0C2BB5E46A00ED6DEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKHU8FT2PB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angieFriz.audiobloom.AudioBloomUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AudioBloom;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5830E9DB2BB5E46100ED6DEF /* Build configuration list for PBXProject "AudioBloom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5830EA022BB5E46A00ED6DEF /* Debug */,
+				5830EA032BB5E46A00ED6DEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5830EA042BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5830EA052BB5E46A00ED6DEF /* Debug */,
+				5830EA062BB5E46A00ED6DEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5830EA072BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5830EA082BB5E46A00ED6DEF /* Debug */,
+				5830EA092BB5E46A00ED6DEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5830EA0A2BB5E46A00ED6DEF /* Build configuration list for PBXNativeTarget "AudioBloomUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5830EA0B2BB5E46A00ED6DEF /* Debug */,
+				5830EA0C2BB5E46A00ED6DEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5830E9D82BB5E46100ED6DEF /* Project object */;
+}

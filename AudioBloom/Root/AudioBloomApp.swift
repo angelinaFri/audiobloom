@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct AudioBloomApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(store: Store(initialState: RootFeature.State()) {
+                RootFeature.live
+            })
         }
     }
 }
+

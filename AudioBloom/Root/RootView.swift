@@ -60,7 +60,7 @@ struct RootView: View {
                             value: Binding(
                                 get: { viewStore.currentTime },
                                 set: { newTime in
-                                    //TODO: - Dispatch an action to seek to newTime here
+                                    viewStore.send(.sliderToTime(newTime))
                                 }
                             ),
                             in: 0...max(viewStore.duration, 1)
@@ -90,7 +90,7 @@ struct RootView: View {
                     }
 
                     Button(action: {
-                        // Action for rewinding 5 seconds backward
+                        viewStore.send(.rewind)
                     }) {
                         Image(systemName: "gobackward.5")
                             .resizable()
@@ -108,7 +108,7 @@ struct RootView: View {
                     }
 
                     Button(action: {
-                        // Action for fast forwarding 10 seconds
+                        viewStore.send(.fastForward)
                     }) {
                         Image(systemName: "goforward.10")
                             .resizable()
@@ -117,7 +117,7 @@ struct RootView: View {
                     }
 
                     Button(action: {
-                        // Action for playing forward
+                        // forward item
                     }) {
                         Image(systemName: "forward.end.fill")
                             .resizable()

@@ -33,6 +33,9 @@ struct RootFeature {
     enum Action {
         case delegate(Delegate)
         case playButtonTapped
+        case fastForward
+        case rewind
+        case sliderToTime(Double)
         case updateDuration(TimeInterval)
         case updateCurrentTime(TimeInterval)
 
@@ -81,21 +84,10 @@ struct RootFeature {
                 switch state.mode {
                 case .notPlaying:
                     if state.currentTime > 0 {
-                        let currentTime = state.currentTime
-                        let url = state.url
-                        let progress = currentTime / state.duration
-                        state.mode = .playing(progress: progress)
-                        return .run { send in
-                            await self.audioPlayer.seekTo(time: currentTime)
-                            do {
-                                _ = try await self.audioPlayer.startPlaying(url: url)
-                                await send(.delegate(.playbackStarted))
-                            } catch {
-                                await send(.delegate(.playbackFailed))
-                            }
-                        }
-                        .cancellable(id: CancelID.play, cancelInFlight: true)
+                        // Seek to current time and start playback
+                        return seekAndPlay(currentTime: state.currentTime, url: state.url, state: &state)
                     } else {
+                        // Start playback from the beginning
                         state.mode = .playing(progress: 0)
                         return .run { [url = state.url] send in
                             let isSuccess = try? await self.audioPlayer.startPlaying(url: url) == true
@@ -108,21 +100,55 @@ struct RootFeature {
                     return .run { [audioPlayer] _ in
                         await audioPlayer.stopPlaying()
                     }
-                    .cancellable(id: CancelID.play, cancelInFlight: true)                                    }
+                    .cancellable(id: CancelID.play, cancelInFlight: true)
+                }
             case let .updateDuration(duration):
                 state.duration = duration
                 logger.info("Total Time: \(String(describing: state.duration))")
                 return .none
-
             case let .updateCurrentTime(currentTime):
                 state.currentTime = currentTime
-                if case .playing(_) = state.mode, state.duration > 0 {
-                    let progress = currentTime / state.duration
-                    state.mode = .playing(progress: progress)
-                }
-                logger.info("Current Time: \(String(describing: state.currentTime))")
+                updateProgressBasedOnCurrentTime(&state)
                 return .none
+            case .fastForward:
+                let newTime = min(state.currentTime + 10, state.duration)
+                return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
+            case .rewind:
+                let newTime = max(state.currentTime - 5, 0)
+                return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
+            case let .sliderToTime(newTime):
+               state.currentTime = newTime
+               return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
             }
         }
     }
+
+}
+
+// MARK: - Private
+
+private extension RootFeature {
+
+    func seekAndPlay(currentTime: Double, url: URL, state: inout State) -> Effect<Action> {
+        state.mode = .playing(progress: currentTime / state.duration)
+        return .run { send in
+            await self.audioPlayer.seekTo(time: currentTime)
+            do {
+                _ = try await self.audioPlayer.startPlaying(url: url)
+                await send(.delegate(.playbackStarted))
+            } catch {
+                await send(.delegate(.playbackFailed))
+            }
+        }
+        .cancellable(id: CancelID.play, cancelInFlight: true)
+    }
+
+    func updateProgressBasedOnCurrentTime(_ state: inout State) {
+        if case .playing(_) = state.mode, state.duration > 0 {
+            let progress = state.currentTime / state.duration
+            state.mode = .playing(progress: progress)
+        }
+        logger.info("Current Time: \(String(describing: state.currentTime))")
+    }
+
 }

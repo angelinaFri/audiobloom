@@ -15,6 +15,7 @@ struct AudioPlayerClient {
     var startPlaying: @Sendable (_ url: URL) async throws -> Bool
     var stopPlaying: @Sendable () async -> Void
     var seekTo: @Sendable (_ time: TimeInterval) async -> Void
+    var setRate: @Sendable (_ rate: Float) async -> Void
 }
 
 extension AudioPlayerClient: TestDependencyKey {
@@ -22,6 +23,7 @@ extension AudioPlayerClient: TestDependencyKey {
         let isPlaying = ActorIsolated(false)
         let totalTime = ActorIsolated(45.0)
         let currentTime = ActorIsolated(0.0)
+        let playbackRate = ActorIsolated<Float>(1.0)
 
         return Self(
             totalTime: { await totalTime.value },
@@ -47,6 +49,9 @@ extension AudioPlayerClient: TestDependencyKey {
             },
             seekTo: { time in
                 await currentTime.setValue(time)
+            }, 
+            setRate: { rate in
+                await playbackRate.setValue(rate)
             }
         )
     }

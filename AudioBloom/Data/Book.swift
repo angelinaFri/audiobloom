@@ -12,13 +12,6 @@ struct Book: Codable, Equatable, Identifiable {
     let name: String
     let coverPageImage: String
     let chapters: [Chapter]
-
-    enum BookKeys: String, CodingKey {
-        case id
-        case name
-        case coverPageImage
-        case chapters
-    }
 }
 
 struct Chapter: Codable, Equatable, Identifiable {
@@ -26,13 +19,6 @@ struct Chapter: Codable, Equatable, Identifiable {
     let text: String
     let audio: String
     let keyPoint: String
-
-    enum ChapterKeys {
-        case id
-        case text
-        case audio
-        case keyPoint
-    }
 }
 
 extension Book {

@@ -1,25 +1,25 @@
 {
-    "books": [
+    "id": 1,
+    "name": "Glinda of Oz",
+    "coverPageImage": "https://media.publit.io/file/glinda-of-oz-1002.png",
+    "chapters": [
         {
-            "name": "Glinda of Oz",
-            "coverPageImage": "https://media.publit.io/file/glinda-of-oz-1002.png",
-            "chapters": [
-                {
-                    "text": "Glinda, the good Sorceress of Oz, sat in the grand court of her palace, surrounded by her maids of honor\u2014a hundred of the most beautiful girls of the Fairyland of Oz. The palace court was built of rare marbles, exquisitely polished. Fountains tinkled musically here and there; the vast colonnade, open to the south, allowed the maidens, as they raised their heads from their embroideries, to gaze upon a vista of rose-hued fields and groves of trees bearing fruits or laden with sweet-scented flowers. At times one of the girls would start a song, the others joining in the chorus, or one would rise and dance, gracefully swaying to the music of a harp played by a companion. And then Glinda smiled, glad to see her maids mixing play with work.",
-                    "audio": "https://ia600708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_01_baum_64kb.mp3",
-                    "keyPoint": "Glinda, the good Sorceress of Oz, sat in the grand court of her palace, surrounded by her maids of honor\u2014a hundred of the most beautiful girls of the Fairyland of Oz."
-                },
-                {
-                    "text": "Residing in Ozma's palace at this time was a live Scarecrow, a most remarkable and intelligent creature who had once ruled the Land of Oz for a brief period and was much loved and respected by all the people. Once a Munchkin farmer had stuffed an old suit of clothes with straw and put stuffed boots on the feet and used a pair of stuffed cotton gloves for hands. The head of the Scarecrow was a stuffed sack fastened to the body, with eyes, nose, mouth and ears painted on the sack. When a hat had been put on the head, the thing was a good imitation of a man. The farmer placed the Scarecrow on a pole in his cornfield and it came to life in a curious manner. Dorothy, who was passing by the field, was hailed by the live Scarecrow and lifted him off his pole. He then went with her to the Emerald City, where the Wizard of Oz gave him some excellent brains, and the Scarecrow soon became an important personage.",
-                    "audio": "https://ia600708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_02_baum_64kb.mp3",
-                    "keyPoint": "Residing in Ozma's palace at this time was a live Scarecrow, a most remarkable and intelligent creature who had once ruled the Land of Oz for a brief period and was much loved and respected by all the people."
-                },
-                {
-                    "text": "From the top of the hill Ozma and Dorothy looked down into the valley beyond and were surprised to find it filled with a floating mist that was as dense as smoke. Nothing in the valley was visible except these rolling waves of mist, but beyond, on the other side, rose a grassy hill that appeared quite beautiful. 'Well,' said Dorothy, 'what are we to do, Ozma? Walk down into that thick fog, an' prob'bly get lost in it, or wait till it clears away?' 'I'm not sure it will clear away, however long we wait,' replied Ozma, doubtfully. 'If we wish to get on, I think we must venture into the mist.' 'But we can't see where we're going, or what we're stepping on,' protested Dorothy. 'There may be dreadful things mixed up in that fog, an' I'm scared just to think of wading into it.'",
-                    "audio": "https://ia800708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_03_baum.mp3",
-                    "keyPoint": "From the top of the hill Ozma and Dorothy looked down into the valley beyond and were surprised to find it filled with a floating mist that was as dense as smoke."
-                }
-            ]
+            "id": 1,
+            "text": "Glinda, the good Sorceress of Oz, sat in the grand court of her palace, surrounded by her maids of honor\u2014a hundred of the most beautiful girls of the Fairyland of Oz. The palace court was built of rare marbles, exquisitely polished. Fountains tinkled musically here and there; the vast colonnade, open to the south, allowed the maidens, as they raised their heads from their embroideries, to gaze upon a vista of rose-hued fields and groves of trees bearing fruits or laden with sweet-scented flowers. At times one of the girls would start a song, the others joining in the chorus, or one would rise and dance, gracefully swaying to the music of a harp played by a companion. And then Glinda smiled, glad to see her maids mixing play with work.",
+            "audio": "https://ia600708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_01_baum_64kb.mp3",
+            "keyPoint": "Glinda, the good Sorceress of Oz, sat in the grand court of her palace..."
+        },
+        {
+            "id": 2,
+            "text": "Residing in Ozma's palace at this time was a live Scarecrow, a most remarkable and intelligent creature who had once ruled the Land of Oz for a brief period and was much loved and respected by all the people. Once a Munchkin farmer had stuffed an old suit of clothes with straw and put stuffed boots on the feet and used a pair of stuffed cotton gloves for hands. The head of the Scarecrow was a stuffed sack fastened to the body, with eyes, nose, mouth and ears painted on the sack. When a hat had been put on the head, the thing was a good imitation of a man. The farmer placed the Scarecrow on a pole in his cornfield and it came to life in a curious manner. Dorothy, who was passing by the field, was hailed by the live Scarecrow and lifted him off his pole. He then went with her to the Emerald City, where the Wizard of Oz gave him some excellent brains, and the Scarecrow soon became an important personage.",
+            "audio": "https://ia600708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_02_baum_64kb.mp3",
+            "keyPoint": "Residing in Ozma's palace at this time was a live Scarecrow..."
+        },
+        {
+            "id": 3,
+            "text": "From the top of the hill Ozma and Dorothy looked down into the valley beyond and were surprised to find it filled with a floating mist that was as dense as smoke. Nothing in the valley was visible except these rolling waves of mist, but beyond, on the other side, rose a grassy hill that appeared quite beautiful. 'Well,' said Dorothy, 'what are we to do, Ozma? Walk down into that thick fog, an' prob'bly get lost in it, or wait till it clears away?' 'I'm not sure it will clear away, however long we wait,' replied Ozma, doubtfully. 'If we wish to get on, I think we must venture into the mist.' 'But we can't see where we're going, or what we're stepping on,' protested Dorothy. 'There may be dreadful things mixed up in that fog, an' I'm scared just to think of wading into it.'",
+            "audio": "https://ia800708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_03_baum.mp3",
+            "keyPoint": "From the top of the hill Ozma and Dorothy looked down into the valley beyond..."
         }
     ]
 }

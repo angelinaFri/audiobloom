@@ -13,7 +13,7 @@
 		5830E9F52BB5E46A00ED6DEF /* AudioBloomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */; };
 		5830E9FF2BB5E46A00ED6DEF /* AudioBloomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */; };
 		5830EA012BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */; };
-		5830EA152BB5E87A00ED6DEF /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA142BB5E87A00ED6DEF /* RootFeature.swift */; };
+		5830EA152BB5E87A00ED6DEF /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA142BB5E87A00ED6DEF /* HomeFeature.swift */; };
 		5830EA182BB5E89B00ED6DEF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5830EA172BB5E89B00ED6DEF /* ComposableArchitecture */; };
 		5830EA1A2BB5E8A700ED6DEF /* ComposableArchitectureExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 5830EA192BB5E8A700ED6DEF /* ComposableArchitectureExtras */; };
 		5830EA1C2BB5E8C300ED6DEF /* DataLoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA1B2BB5E8C300ED6DEF /* DataLoadingStatus.swift */; };
@@ -21,10 +21,12 @@
 		5830EA202BB5E8FB00ED6DEF /* book.json in Resources */ = {isa = PBXBuildFile; fileRef = 5830EA1F2BB5E8FB00ED6DEF /* book.json */; };
 		5830EA222BB5E90E00ED6DEF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA212BB5E90E00ED6DEF /* Book.swift */; };
 		5830EA242BB5E94100ED6DEF /* Bundle + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA232BB5E94100ED6DEF /* Bundle + ext.swift */; };
-		5830EA262BB5E97400ED6DEF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA252BB5E97400ED6DEF /* RootView.swift */; };
+		5830EA262BB5E97400ED6DEF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA252BB5E97400ED6DEF /* HomeView.swift */; };
 		5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */; };
 		5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */; };
 		58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */; };
+		58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AD2BB98E00009A824B /* Double + Ext.swift */; };
+		58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */; };
 		58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD52BB697120077F2AA /* DLogger.swift */; };
 		58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */; };
 /* End PBXBuildFile section */
@@ -56,16 +58,18 @@
 		5830E9FA2BB5E46A00ED6DEF /* AudioBloomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioBloomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITests.swift; sourceTree = "<group>"; };
 		5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5830EA142BB5E87A00ED6DEF /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
+		5830EA142BB5E87A00ED6DEF /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		5830EA1B2BB5E8C300ED6DEF /* DataLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingStatus.swift; sourceTree = "<group>"; };
 		5830EA1D2BB5E8DE00ED6DEF /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5830EA1F2BB5E8FB00ED6DEF /* book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = book.json; sourceTree = "<group>"; };
 		5830EA212BB5E90E00ED6DEF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		5830EA232BB5E94100ED6DEF /* Bundle + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + ext.swift"; sourceTree = "<group>"; };
-		5830EA252BB5E97400ED6DEF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5830EA252BB5E97400ED6DEF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClient.swift; sourceTree = "<group>"; };
 		5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAudioPlayerClient.swift; sourceTree = "<group>"; };
 		58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter + Ext.swift"; sourceTree = "<group>"; };
+		58D8E6AD2BB98E00009A824B /* Double + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Ext.swift"; sourceTree = "<group>"; };
+		58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcher.swift; sourceTree = "<group>"; };
 		58E3ACD52BB697120077F2AA /* DLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLogger.swift; sourceTree = "<group>"; };
 		58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +125,8 @@
 		5830E9E22BB5E46100ED6DEF /* AudioBloom */ = {
 			isa = PBXGroup;
 			children = (
-				5830EA0F2BB5E73200ED6DEF /* Root */,
+				58D8E6AF2BB99449009A824B /* Application */,
+				5830EA0F2BB5E73200ED6DEF /* Home */,
 				5830EA272BB5ED1200ED6DEF /* Business */,
 				5830EA102BB5E73700ED6DEF /* Data */,
 				5830EA112BB5E74100ED6DEF /* Network */,
@@ -158,14 +163,13 @@
 			path = AudioBloomUITests;
 			sourceTree = "<group>";
 		};
-		5830EA0F2BB5E73200ED6DEF /* Root */ = {
+		5830EA0F2BB5E73200ED6DEF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */,
-				5830EA142BB5E87A00ED6DEF /* RootFeature.swift */,
-				5830EA252BB5E97400ED6DEF /* RootView.swift */,
+				58D8E6B02BB9953F009A824B /* UI */,
+				5830EA142BB5E87A00ED6DEF /* HomeFeature.swift */,
 			);
-			path = Root;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		5830EA102BB5E73700ED6DEF /* Data */ = {
@@ -190,6 +194,7 @@
 			children = (
 				5830EA232BB5E94100ED6DEF /* Bundle + ext.swift */,
 				58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */,
+				58D8E6AD2BB98E00009A824B /* Double + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +230,23 @@
 				5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */,
 			);
 			path = Clients;
+			sourceTree = "<group>";
+		};
+		58D8E6AF2BB99449009A824B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		58D8E6B02BB9953F009A824B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5830EA252BB5E97400ED6DEF /* HomeView.swift */,
+				58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		58E3ACD32BB696D60077F2AA /* Helpers */ = {
@@ -383,14 +405,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */,
 				5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */,
-				5830EA152BB5E87A00ED6DEF /* RootFeature.swift in Sources */,
+				5830EA152BB5E87A00ED6DEF /* HomeFeature.swift in Sources */,
 				5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */,
 				5830EA222BB5E90E00ED6DEF /* Book.swift in Sources */,
 				58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */,
 				5830EA1C2BB5E8C300ED6DEF /* DataLoadingStatus.swift in Sources */,
+				58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */,
 				5830EA1E2BB5E8DE00ED6DEF /* APIClient.swift in Sources */,
-				5830EA262BB5E97400ED6DEF /* RootView.swift in Sources */,
+				5830EA262BB5E97400ED6DEF /* HomeView.swift in Sources */,
 				58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */,
 				5830EA242BB5E94100ED6DEF /* Bundle + ext.swift in Sources */,
 				58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */,

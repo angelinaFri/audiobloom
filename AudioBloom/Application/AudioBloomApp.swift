@@ -12,8 +12,8 @@ import ComposableArchitecture
 struct AudioBloomApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(store: Store(initialState: RootFeature.State()) {
-                RootFeature.live
+            HomeView(store: Store(initialState: HomeFeature.State()) {
+                HomeFeature.liveBook
             })
         }
     }

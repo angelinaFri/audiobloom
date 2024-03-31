@@ -18,7 +18,8 @@ extension AudioPlayerClient: DependencyKey {
             currentTime: { await audioPlayer.currentTime },
             startPlaying: { url in try await audioPlayer.start(url: url) },
             stopPlaying: { await audioPlayer.stop() }, 
-            seekTo: { time in await audioPlayer.seekTo(time) }
+            seekTo: { time in await audioPlayer.seekTo(time) },
+            setRate: { rate in await audioPlayer.setRate(rate) }
         )
     }
 }
@@ -49,6 +50,13 @@ private actor AudioPlayer {
             self.player?.seek(to: cmTime, completionHandler: { _ in
                 continuation.resume()
             })
+        }
+    }
+
+    func setRate(_ rate: Float) async {
+        self.player?.rate = rate
+        if self.player?.timeControlStatus != .playing {
+            self.player?.playImmediately(atRate: rate)
         }
     }
 

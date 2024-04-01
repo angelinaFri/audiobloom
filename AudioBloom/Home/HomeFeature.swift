@@ -20,9 +20,8 @@ struct HomeFeature {
         var duration: TimeInterval = 0
         var currentTime: TimeInterval = 0
         var currentSpeed: Double = 1
-        var mode = Mode.notPlaying
-        var url: URL = URL(string: Book.sample.chapters[0].audio)!
-        var id: URL { self.url }
+        var mode = Mode.notPlaying            
+        var currentChapterIndex: Int = 0
     }
 
     @CasePathable
@@ -37,6 +36,8 @@ struct HomeFeature {
         case playButtonTapped
         case fastForward
         case rewind
+        case playForward
+        case playBackward
         case sliderToTime(Double)
         case changeSpeed
         case updateDuration(TimeInterval)
@@ -93,6 +94,22 @@ struct HomeFeature {
                     logger.info("Failed to fetch book: \(error)")
                 }
                 return .none
+            case .playForward:
+                if state.currentChapterIndex < state.book.chapters.count - 1 {
+                    state.currentChapterIndex += 1
+                    resetStateForNewChapter(state: &state)
+                    return play(state: &state)
+                } else {
+                    return .none
+                }
+            case .playBackward:
+                if state.currentChapterIndex > 0 {
+                    state.currentChapterIndex -= 1
+                    resetStateForNewChapter(state: &state)
+                    return play(state: &state)
+                } else {
+                    return .none
+                }
             }
         }
     }
@@ -119,16 +136,9 @@ private extension HomeFeature {
         switch state.mode {
         case .notPlaying:
             if state.currentTime > 0 {
-                // Seek to current time and start playback
-                return seekAndPlay(currentTime: state.currentTime, url: state.url, state: &state)
+                return seekAndPlay(currentTime: state.currentTime, state: &state)
             } else {
-                // Start playback from the beginning
-                state.mode = .playing(progress: 0)
-                return .run { [url = state.url] send in
-                    let isSuccess = try? await self.audioPlayer.startPlaying(url: url) == true
-                    await send(.delegate(isSuccess ?? false ? .playbackStarted : .playbackFailed))
-                }
-                .cancellable(id: CancelID.play, cancelInFlight: true)
+                return play(state: &state)
             }
         case .playing:
             state.mode = .notPlaying
@@ -153,17 +163,17 @@ private extension HomeFeature {
 
     func handleFastForward(state: inout State) -> Effect<Action> {
         let newTime = min(state.currentTime + 10, state.duration)
-        return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
+        return seekAndPlay(currentTime: newTime, state: &state)
     }
 
     func handleRewind(state: inout State) -> Effect<Action> {
         let newTime = max(state.currentTime - 5, 0)
-        return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
+        return seekAndPlay(currentTime: newTime, state: &state)
     }
 
     func handleSliderToTime(_ newTime: TimeInterval, state: inout State) -> Effect<Action> {
         state.currentTime = newTime
-        return seekAndPlay(currentTime: newTime, url: state.url, state: &state)
+        return seekAndPlay(currentTime: newTime, state: &state)
     }
 
     func handleChangeSpeed(state: inout State) -> Effect<Action> {
@@ -210,10 +220,26 @@ private extension HomeFeature {
         .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
-    func seekAndPlay(currentTime: Double, url: URL, state: inout State) -> Effect<Action> {
-        state.mode = .playing(progress: currentTime / state.duration)
+    private func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
+        let chapterUrl = state.book.chapters[state.currentChapterIndex].audio
+        guard let url = URL(string: chapterUrl) else {
+            return .run { send in
+                await send(.delegate(.playbackFailed))
+            }
+        }
+
+        if let currentTime = currentTime {
+            state.mode = .playing(progress: currentTime / state.duration)
+        } else {
+            state.mode = .playing(progress: 0)
+        }
+
         return .run { send in
-            await self.audioPlayer.seekTo(time: currentTime)
+            // If there's a specific time to seek to, do that first
+            if let currentTime = currentTime {
+                await self.audioPlayer.seekTo(time: currentTime)
+            }
+
             do {
                 _ = try await self.audioPlayer.startPlaying(url: url)
                 await send(.delegate(.playbackStarted))
@@ -224,12 +250,27 @@ private extension HomeFeature {
         .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
+    func play(state: inout State) -> Effect<Action> {
+        return startPlayback(state: &state)
+    }
+
+    func seekAndPlay(currentTime: Double, state: inout State) -> Effect<Action> {
+        return startPlayback(currentTime: currentTime, state: &state)
+    }
+
     func updateProgressBasedOnCurrentTime(_ state: inout State) {
         if case .playing(_) = state.mode, state.duration > 0 {
             let progress = state.currentTime / state.duration
             state.mode = .playing(progress: progress)
         }
         logger.info("Current Time: \(String(describing: state.currentTime))")
+    }
+
+    func resetStateForNewChapter(state: inout State) {
+        state.currentTime = 0
+        state.duration = 0
+        state.currentSpeed = 1
+        state.mode = .notPlaying
     }
 }
 

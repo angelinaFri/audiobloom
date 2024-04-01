@@ -65,16 +65,16 @@ private extension HomeView {
     private func keyPointCounter(_ store: HomeFeatureViewStore) -> some View {
         HStack {
             Text("KEY POINT")
-            Text("\(store.book.chapters[0].id)")
+            Text("\(store.book.chapters[store.currentChapterIndex].id)")
             Text("OF")
-            Text("\(store.book.chapters[0].id)")
+            Text("\(store.book.chapters.count)")
         }
         .fontWeight(.medium)
         .foregroundColor(.secondary)
     }
 
     private func keyPointView(_ store: HomeFeatureViewStore) -> some View {
-        Text("\(store.book.chapters[0].keyPoint)")
+        Text("\(store.book.chapters[store.currentChapterIndex].keyPoint)")
             .multilineTextAlignment(.center)
             .fontWeight(.medium)
             .padding(.horizontal, 32)
@@ -95,7 +95,7 @@ private extension HomeView {
                         store.send(.sliderToTime(newTime))
                     }
                 ),
-                in: 0...max(store.duration, 1)
+                in: 0...max(store.duration, 0.1) 
             )
             .disabled(store.mode == .notPlaying)
             if let timeString = DateComponentsFormatter.minuteSecondFormatter.string(from: store.duration) {
@@ -123,7 +123,7 @@ private extension HomeView {
     private func playerControlButton(_ store: HomeFeatureViewStore) -> some View {
         HStack(spacing: 32) {
             Button(action: {
-                // Action for playing backward
+                store.send(.playBackward)
             }) {
                 Image(systemName: "backward.end.fill")
                     .resizable()
@@ -159,7 +159,7 @@ private extension HomeView {
             }
 
             Button(action: {
-                // forward item
+                store.send(.playForward)
             }) {
                 Image(systemName: "forward.end.fill")
                     .resizable()

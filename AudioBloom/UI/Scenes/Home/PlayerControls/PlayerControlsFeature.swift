@@ -1,17 +1,17 @@
 //
-//  RootFeature.swift
+//  PlayerControlsFeature.swift
 //  AudioBloom
 //
-//  Created by Angelina on 28.03.2024.
+//  Created by Angelina on 01.04.2024.
 //
 
 import Foundation
 import ComposableArchitecture
 
-private let logger = DLogger(identifier: String(describing: HomeFeature.self))
+private let logger = DLogger(identifier: String(describing: PlayerControlsFeature.self))
 
 @Reducer
-struct HomeFeature {
+struct PlayerControlsFeature {
 
     @ObservableState
     struct State: Equatable {
@@ -20,7 +20,7 @@ struct HomeFeature {
         var duration: TimeInterval = 0
         var currentTime: TimeInterval = 0
         var currentSpeed: Double = 1
-        var mode = Mode.notPlaying            
+        var mode = Mode.notPlaying
         var currentChapterIndex: Int = 0
     }
 
@@ -42,8 +42,6 @@ struct HomeFeature {
         case changeSpeed
         case updateDuration(TimeInterval)
         case updateCurrentTime(TimeInterval)
-        case onAppear
-        case bookFetched(Result<Book, Error>)
 
         @CasePathable
         enum Delegate {
@@ -55,15 +53,10 @@ struct HomeFeature {
     @Dependency(\.audioPlayer) var audioPlayer
     @Dependency(\.mainQueue) var mainQueue
 
-    var fetchBook: @Sendable () async throws -> Book
     private enum CancelID {
         case play
         case fetch
     }
-
-    static let liveBook = Self(
-        fetchBook: APIClient.live.fetchBook
-    )
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -84,16 +77,6 @@ struct HomeFeature {
                 return handleSliderToTime(newTime, state: &state)
             case .changeSpeed:
                 return handleChangeSpeed(state: &state)
-            case .onAppear:
-                return handleOnAppear()
-            case .bookFetched(let result):
-                switch result {
-                case .success(let book):
-                    state.book = book
-                case .failure(let error):
-                    logger.info("Failed to fetch book: \(error)")
-                }
-                return .none
             case .playForward:
                 if state.currentChapterIndex < state.book.chapters.count - 1 {
                     state.currentChapterIndex += 1
@@ -118,7 +101,7 @@ struct HomeFeature {
 
 // MARK: - Private
 
-private extension HomeFeature {
+private extension PlayerControlsFeature {
 
     func handlePlaybackDelegateActions(_ action: Action.Delegate, state: inout State) -> Effect<Action> {
         switch action {
@@ -190,18 +173,6 @@ private extension HomeFeature {
         }
     }
 
-    func handleOnAppear() -> Effect<Action> {
-        .run { send in
-            do {
-                let book = try await APIClient.live.fetchBook()
-                await send(.bookFetched(.success(book)))
-            } catch {
-                await send(.bookFetched(.failure(error)))
-            }
-        }
-        .cancellable(id: CancelID.fetch, cancelInFlight: true)
-    }
-
     func startPlaybackMonitoring(state: inout State) -> Effect<Action> {
         logger.info("Playback started")
         return .run { send in
@@ -220,7 +191,7 @@ private extension HomeFeature {
         .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
-    private func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
+    func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
         let chapterUrl = state.book.chapters[state.currentChapterIndex].audio
         guard let url = URL(string: chapterUrl) else {
             return .run { send in

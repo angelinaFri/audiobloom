@@ -27,6 +27,10 @@
 		58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */; };
 		58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AD2BB98E00009A824B /* Double + Ext.swift */; };
 		58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */; };
+		58D8E6BA2BBA8504009A824B /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */; };
+		58D8E6BC2BBA85F1009A824B /* PlayerControlsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6BB2BBA85F1009A824B /* PlayerControlsFeature.swift */; };
+		58D8E6BF2BBBA60B009A824B /* BookReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6BE2BBBA60B009A824B /* BookReaderView.swift */; };
+		58D8E6C12BBBA650009A824B /* BookReaderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6C02BBBA650009A824B /* BookReaderFeature.swift */; };
 		58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD52BB697120077F2AA /* DLogger.swift */; };
 		58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +74,10 @@
 		58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter + Ext.swift"; sourceTree = "<group>"; };
 		58D8E6AD2BB98E00009A824B /* Double + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Ext.swift"; sourceTree = "<group>"; };
 		58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcher.swift; sourceTree = "<group>"; };
+		58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
+		58D8E6BB2BBA85F1009A824B /* PlayerControlsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsFeature.swift; sourceTree = "<group>"; };
+		58D8E6BE2BBBA60B009A824B /* BookReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReaderView.swift; sourceTree = "<group>"; };
+		58D8E6C02BBBA650009A824B /* BookReaderFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReaderFeature.swift; sourceTree = "<group>"; };
 		58E3ACD52BB697120077F2AA /* DLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLogger.swift; sourceTree = "<group>"; };
 		58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				58D8E6AF2BB99449009A824B /* Application */,
-				5830EA0F2BB5E73200ED6DEF /* Home */,
+				58D8E6B62BBA83E6009A824B /* UI */,
 				5830EA272BB5ED1200ED6DEF /* Business */,
 				5830EA102BB5E73700ED6DEF /* Data */,
 				5830EA112BB5E74100ED6DEF /* Network */,
@@ -166,8 +174,11 @@
 		5830EA0F2BB5E73200ED6DEF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				58D8E6B02BB9953F009A824B /* UI */,
+				5830EA252BB5E97400ED6DEF /* HomeView.swift */,
 				5830EA142BB5E87A00ED6DEF /* HomeFeature.swift */,
+				58D8E6B52BBA8352009A824B /* PlayerControls */,
+				58D8E6BD2BBBA56F009A824B /* BookReader */,
+				58D8E6B82BBA842D009A824B /* BookModeSwitcher */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -240,13 +251,46 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		58D8E6B02BB9953F009A824B /* UI */ = {
+		58D8E6B52BBA8352009A824B /* PlayerControls */ = {
 			isa = PBXGroup;
 			children = (
-				5830EA252BB5E97400ED6DEF /* HomeView.swift */,
-				58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */,
+				58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */,
+				58D8E6BB2BBA85F1009A824B /* PlayerControlsFeature.swift */,
+			);
+			path = PlayerControls;
+			sourceTree = "<group>";
+		};
+		58D8E6B62BBA83E6009A824B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				58D8E6B72BBA8400009A824B /* Scenes */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		58D8E6B72BBA8400009A824B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5830EA0F2BB5E73200ED6DEF /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		58D8E6B82BBA842D009A824B /* BookModeSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */,
+			);
+			path = BookModeSwitcher;
+			sourceTree = "<group>";
+		};
+		58D8E6BD2BBBA56F009A824B /* BookReader */ = {
+			isa = PBXGroup;
+			children = (
+				58D8E6BE2BBBA60B009A824B /* BookReaderView.swift */,
+				58D8E6C02BBBA650009A824B /* BookReaderFeature.swift */,
+			);
+			path = BookReader;
 			sourceTree = "<group>";
 		};
 		58E3ACD32BB696D60077F2AA /* Helpers */ = {
@@ -405,9 +449,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D8E6BF2BBBA60B009A824B /* BookReaderView.swift in Sources */,
 				58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */,
 				5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */,
 				5830EA152BB5E87A00ED6DEF /* HomeFeature.swift in Sources */,
+				58D8E6C12BBBA650009A824B /* BookReaderFeature.swift in Sources */,
+				58D8E6BC2BBA85F1009A824B /* PlayerControlsFeature.swift in Sources */,
 				5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */,
 				5830EA222BB5E90E00ED6DEF /* Book.swift in Sources */,
 				58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */,
@@ -416,6 +463,7 @@
 				5830EA1E2BB5E8DE00ED6DEF /* APIClient.swift in Sources */,
 				5830EA262BB5E97400ED6DEF /* HomeView.swift in Sources */,
 				58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */,
+				58D8E6BA2BBA8504009A824B /* PlayerControlsView.swift in Sources */,
 				5830EA242BB5E94100ED6DEF /* Bundle + ext.swift in Sources */,
 				58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */,
 				5830E9E42BB5E46100ED6DEF /* AudioBloomApp.swift in Sources */,

@@ -12,6 +12,12 @@ struct Book: Codable, Equatable, Identifiable {
     let name: String
     let coverPageImage: String
     let chapters: [Chapter]
+    var mode: Mode? = .audio
+
+    enum Mode: Codable, Equatable {
+        case reader
+        case audio
+    }
 }
 
 struct Chapter: Codable, Equatable, Identifiable {
@@ -36,7 +42,8 @@ extension Book {
                         audio: "https://ia600708.us.archive.org/0/items/glinda_oz_0908_librivox/glindaofoz_02_baum_64kb.mp3",
                         keyPoint: "Residing in Ozma's palace at this time was a live Scarecrow."
                     )
-                ]
+                ], 
+            mode: .audio
         )
     }
 
@@ -51,7 +58,8 @@ extension Book {
                     text: "",
                     audio: "",
                     keyPoint: "")
-            ]
+            ], 
+            mode: .audio
         )
     }
 }

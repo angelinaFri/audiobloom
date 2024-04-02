@@ -13,16 +13,17 @@ typealias PlayerControlsFeatureViewStore = ViewStore<PlayerControlsFeature.State
 struct PlayerControlsView: View {
     let store: StoreOf<PlayerControlsFeature>
 
-    public init(store: StoreOf<PlayerControlsFeature>) {
-        self.store = store
-    }
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 12) {
-                keyPointCounter(viewStore)
-                keyPointView(viewStore)
-                sliderView(viewStore)
-                speedButton(viewStore)
+            VStack(spacing: 40) {
+                VStack(spacing: 8) {
+                    VStack(spacing: 4) {
+                        keyPointCounter(viewStore)
+                        keyPointView(viewStore)
+                    }
+                    sliderView(viewStore)
+                    speedButton(viewStore)
+                }
                 playerControlButton(viewStore)
             }
         }

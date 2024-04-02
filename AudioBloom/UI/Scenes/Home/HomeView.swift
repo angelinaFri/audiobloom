@@ -13,20 +13,35 @@ typealias HomeFeatureViewStore = ViewStore<HomeFeature.State, HomeFeature.Action
 struct HomeView: View {
     let store: StoreOf<HomeFeature>
 
-    public init(store: StoreOf<HomeFeature>) {
-        self.store = store
-    }
-
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                bookCoverImage(viewStore)
-                PlayerControlsView(store: self.store.scope(
-                    state: \.playerControlState, action: \.playerControlAction)
-                )
-                BookModeSwitcher()
-                    .padding(.vertical, 40)
-                
+            ZStack {
+                if viewStore.book.mode == .audio {
+                    VStack {
+                        bookCoverImage(viewStore)
+                            .padding(.vertical, 40)
+                        PlayerControlsView(store: self.store.scope(
+                            state: \.playerControlState,
+                            action: \.playerControlAction)
+                        )
+                        Spacer()
+                    }
+                } else {
+                    BookReaderView(store: self.store.scope(
+                        state: \.bookReaderState,
+                        action: \.bookReaderAction)
+                    )
+                }
+
+                VStack {
+                    Spacer()
+                    BookModeSwitcher(store: self.store.scope(
+                        state: \.bookModeState,
+                        action: \.bookModeSwitcherAction)
+                    )
+                    .padding(.top, 40)
+                    .padding(.bottom, 16)
+                }
             }
             .padding(.horizontal, 16)
             .onAppear {
@@ -34,26 +49,27 @@ struct HomeView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background { Color.cream.ignoresSafeArea()
-        }
+        .background(Color.cream.ignoresSafeArea())
     }
 
 }
 
 private extension HomeView {
 
-    private func bookCoverImage(_ store: HomeFeatureViewStore) -> some View {
-        AsyncImage(url: URL(string: store.book.coverPageImage)) { phase in
-            if let image = phase.image {
-                image.resizable().aspectRatio(contentMode: .fit)
-            } else if phase.error != nil {
-                Image(.emptyBook)
-            } else {
-                ProgressView()
-            }
+    @ViewBuilder
+    func bookCoverImage(_ store: HomeFeatureViewStore) -> some View {
+        if let url = URL(string: store.book.coverPageImage) {
+            CachedAsyncImage(url: url)
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(16)
+                .padding(.horizontal, 64)
+        } else {
+            Image(.emptyBook)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(16)
+                .padding(.horizontal, 64)
         }
-        .cornerRadius(16)
-        .padding(.horizontal, 64)
     }
 
 }

@@ -17,12 +17,16 @@ struct HomeFeature {
     struct State: Equatable {
         var book: Book = .idle
         var playerControlState = PlayerControlsFeature.State()
+        var bookModeState = BookModeSwitcherFeature.State()
+        var bookReaderState = BookReaderFeature.State()
     }
 
     enum Action {
         case onAppear
         case bookFetched(Result<Book, Error>)
         case playerControlAction(PlayerControlsFeature.Action)
+        case bookModeSwitcherAction(BookModeSwitcherFeature.Action)
+        case bookReaderAction(BookReaderFeature.Action)
     }
 
     var fetchBook: @Sendable () async throws -> Book
@@ -38,6 +42,12 @@ struct HomeFeature {
         Scope(state: \.playerControlState, action: /HomeFeature.Action.playerControlAction) {
             PlayerControlsFeature()
         }
+        Scope(state: \.bookModeState, action: /HomeFeature.Action.bookModeSwitcherAction) {
+            BookModeSwitcherFeature()
+        }
+        Scope(state: \.bookReaderState, action: /HomeFeature.Action.bookReaderAction) {
+            BookReaderFeature()
+        }
         Reduce { state, action in
             switch action {
             case .onAppear:
@@ -47,13 +57,24 @@ struct HomeFeature {
                 case .success(let book):
                     state.book = book
                     state.playerControlState.book = book
-                    logger.info("Book: \(state.playerControlState.book.name)")
+                    state.bookReaderState.book = book
+                    state.bookModeState.book = book
+                    state.bookModeState.book.mode = .audio
                 case .failure(let error):
                     logger.info("Failed to fetch book: \(error)")
                 }
                 return .none
             case .playerControlAction:
                 return .none
+            case .bookModeSwitcherAction(.toggleMode):
+                state.book.mode = state.book.mode == .audio ? .reader : .audio
+                logger.info("\(state.book.mode)")
+                return .none
+            case .bookModeSwitcherAction(.togglePlayPause):
+                return .none
+            case .bookReaderAction:
+                return .none
+
             }
         }
     }

@@ -6,69 +6,70 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct BookModeSwitcher: View {
-    @State private var isSelected: Bool = false // false for headphones, true for text.alignleft
-    @State private var isPlaying: Bool = false
+    let store: StoreOf<BookModeSwitcherFeature>
 
     var body: some View {
-        HStack {
-            // Conditional play/pause button
-            if isSelected {
-                Button(action: {
-                    isPlaying.toggle()
-                }) {
-                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .frame(width: 60, height: 60)
-                        .background(.white)
-                        .clipShape(Circle())
-                        .overlay(
-                            Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
-                        )
-                }
-                .transition(.scale)
-            }
-            HStack(spacing: 8) {
-                Button(action: {
-                    withAnimation {
-                        isSelected = false
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            HStack {
+                if viewStore.state.isReaderMode {
+                    Button(action: {
+                        viewStore.send(.togglePlayPause)
+                    }) {
+                        Image(systemName: viewStore.isPlaying ? "pause.fill" : "play.fill")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .frame(width: 60, height: 60)
+                            .background(.white)
+                            .clipShape(Circle())
+                            .overlay(
+                                Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
+                            )
                     }
-                }) {
-                    Image(systemName: "headphones")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(!isSelected ? .white : .black)
-                        .padding(16)
-                        .background(!isSelected ? Color.blue : Color.clear)
-                        .clipShape(Circle())
+                    .transition(.scale)
                 }
+                HStack(spacing: 8) {
+                    Button(action: {
+                        viewStore.send(.toggleMode)
+                    }) {
+                        Image(systemName: "headphones")
+                            .configured(for: viewStore.state.isReaderMode)
+                    }
 
-                Button(action: {
-                    withAnimation {
-                        isSelected = true
+                    Button(action: {
+                        viewStore.send(.toggleMode)
+                    }) {
+                        Image(systemName: "text.alignleft")
+                            .configured(for: !viewStore.state.isReaderMode)
                     }
-                }) {
-                    Image(systemName: "text.alignleft")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(16)
-                        .foregroundColor(isSelected ? .white : .black)
-                        .background(isSelected ? Color.blue : Color.clear)
-                        .clipShape(Circle())
                 }
+                .background(Capsule().foregroundColor(.white))
+                .overlay(
+                    Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
+                )
+                .animation(.easeInOut(duration: 0.35), value: viewStore.book.mode)
             }
-            .background(Capsule().foregroundColor(.white))
-            .overlay(
-                Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
-            )
-            .animation(.easeInOut(duration: 0.35), value: isSelected)
         }
     }
 }
 
 #Preview {
-    BookModeSwitcher()
+    BookModeSwitcher(store: Store(initialState: BookModeSwitcherFeature.State()) {
+        BookModeSwitcherFeature()
+    })
+}
+
+private extension Image {
+    func configured(for isSelected: Bool) -> some View {
+        self
+            .font(.title2)
+            .fontWeight(.bold)
+            .padding(16)
+            .foregroundColor(isSelected ? .white : .black)
+            .background(isSelected ? Color.blue : Color.clear)
+            .clipShape(Circle())
+    }
 }

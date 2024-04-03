@@ -19,7 +19,7 @@ struct PlayerControlsFeature {
         var book: Book = .idle
         var duration: TimeInterval = 0
         var currentTime: TimeInterval = 0
-        var currentSpeed: Double = 1
+        var currentSpeedIndex: Int = 1
         var mode = Mode.notPlaying
         var currentChapterIndex: Int = 0
     }
@@ -33,6 +33,7 @@ struct PlayerControlsFeature {
 
     enum Action {
         case delegate(Delegate)
+        case onAppear
         case playButtonTapped
         case fastForward
         case rewind
@@ -93,6 +94,8 @@ struct PlayerControlsFeature {
                 } else {
                     return .none
                 }
+            case .onAppear:
+                return play(state: &state)
             }
         }
     }
@@ -160,16 +163,15 @@ private extension PlayerControlsFeature {
     }
 
     func handleChangeSpeed(state: inout State) -> Effect<Action> {
-        if let currentIndex = state.speeds.firstIndex(of: state.currentSpeed) {
-            let nextIndex = (currentIndex + 1) % state.speeds.count
-            state.currentSpeed = state.speeds[nextIndex]
-        } else {
-            // Default to 1x if current speed is not found
-            state.currentSpeed = 1.0
-        }
-        let speed = state.currentSpeed
-        return .run { _ in
-            await self.audioPlayer.setRate(Float(speed))
+        state.currentSpeedIndex = (state.currentSpeedIndex + 1) % state.speeds.count
+        let currentSpeed = state.speeds[state.currentSpeedIndex]
+        return updatePlayerSpeed(to: currentSpeed, state: &state)
+    }
+
+    func updatePlayerSpeed(to speed: Double, state: inout State) -> Effect<Action> {
+        state.mode = .playing(progress: state.currentTime / state.duration)
+        return .run { [audioPlayer] _ in
+            await audioPlayer.setRate(Float(speed))
         }
     }
 
@@ -192,36 +194,61 @@ private extension PlayerControlsFeature {
     }
 
     func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
-        let chapterUrl = state.book.chapters[state.currentChapterIndex].audio
-        guard let url = URL(string: chapterUrl) else {
+        guard let url = getChapterURL(for: state) else {
             return .run { send in
                 await send(.delegate(.playbackFailed))
             }
         }
 
-        if let currentTime = currentTime {
-            state.mode = .playing(progress: currentTime / state.duration)
-        } else {
-            state.mode = .playing(progress: 0)
+        updatePlaybackState(with: currentTime, state: &state)
+
+        return initiatePlayback(with: url, currentTime: currentTime, state: &state)
+            .cancellable(id: CancelID.play, cancelInFlight: true)
+    }
+
+    func getChapterURL(for state: State) -> URL? {
+        guard let chapterUrl = state.book.chapters[safe: state.currentChapterIndex]?.audio,
+              let url = URL(string: chapterUrl) else {
+            logger.error("Invalid chapter URL.")
+            return nil
         }
+        return url
+    }
+
+    func updatePlaybackState(with currentTime: Double?, state: inout State) {
+        let progress = currentTime.map { $0 / state.duration } ?? 0
+        state.mode = .playing(progress: progress)
+    }
+
+    func initiatePlayback(with url: URL, currentTime: Double?, state: inout State) -> Effect<Action> {
+        let speed = state.speeds[state.currentSpeedIndex]
+        logger.info("Speed before playing: \(speed)")
 
         return .run { send in
-            // If there's a specific time to seek to, do that first
+
+            // Seek to the current time if specified
             if let currentTime = currentTime {
                 await self.audioPlayer.seekTo(time: currentTime)
             }
 
+            // Attempt to start playing the audio
             do {
-                _ = try await self.audioPlayer.startPlaying(url: url)
+                await self.audioPlayer.setRate(Float(speed))
+                _ = try await self.audioPlayer.startPlaying(url: url, speed: Float(speed))
                 await send(.delegate(.playbackStarted))
             } catch {
+                logger.error("Playback failed with error: \(error.localizedDescription)")
                 await send(.delegate(.playbackFailed))
             }
         }
-        .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
     func play(state: inout State) -> Effect<Action> {
+        guard !state.book.chapters.isEmpty else {
+            return .run { send in
+                await send(.delegate(.playbackFailed))
+            }
+        }
         return startPlayback(state: &state)
     }
 
@@ -240,8 +267,8 @@ private extension PlayerControlsFeature {
     func resetStateForNewChapter(state: inout State) {
         state.currentTime = 0
         state.duration = 0
-        state.currentSpeed = 1
         state.mode = .notPlaying
     }
+
 }
 

@@ -26,6 +26,9 @@ struct PlayerControlsView: View {
                 }
                 playerControlButton(viewStore)
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
@@ -53,11 +56,9 @@ private extension PlayerControlsView {
 
     func sliderView(_ store: PlayerControlsFeatureViewStore) -> some View {
         HStack {
-            if let timeString = DateComponentsFormatter.minuteSecondFormatter.string(from: store.currentTime) {
-                Text(timeString)
-                    .frame(minWidth: 50)
-                    .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-            }
+            Text(store.currentTime, format: .timerCountdown)
+                .frame(minWidth: 50)
+                .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
             Slider(
                 value: Binding(
                     get: { store.currentTime },
@@ -68,11 +69,9 @@ private extension PlayerControlsView {
                 in: 0...max(store.duration, 0.1)
             )
             .disabled(store.mode == .notPlaying)
-            if let timeString = DateComponentsFormatter.minuteSecondFormatter.string(from: store.duration) {
-                Text(timeString)
-                    .frame(minWidth: 50)
-                    .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-            }
+            Text(store.duration, format: .timerCountdown)
+                .frame(minWidth: 50)
+                .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
         }
     }
 
@@ -80,7 +79,7 @@ private extension PlayerControlsView {
         Button(action: {
             store.send(.changeSpeed)
         }) {
-            Text("Speed \(store.currentSpeed.asString())x")
+            Text("Speed \(store.speeds[store.currentSpeedIndex].asString())x")
                 .fontWeight(.bold)
                 .font(.subheadline)
                 .foregroundColor(.black)
@@ -110,7 +109,6 @@ private extension PlayerControlsView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
             }
-
             Button(action: {
                 store.send(.playButtonTapped)
             }) {

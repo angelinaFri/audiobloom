@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct AudioPlayerClient {
     var totalTime: @Sendable () async -> TimeInterval?
     var currentTime: @Sendable () async -> TimeInterval?
-    var startPlaying: @Sendable (_ url: URL) async throws -> Bool
+    var startPlaying: @Sendable (_ url: URL, _ speed: Float) async throws -> Bool
     var stopPlaying: @Sendable () async -> Void
     var seekTo: @Sendable (_ time: TimeInterval) async -> Void
     var setRate: @Sendable (_ rate: Float) async -> Void
@@ -28,7 +28,7 @@ extension AudioPlayerClient: TestDependencyKey {
         return Self(
             totalTime: { await totalTime.value },
             currentTime: { await currentTime.value },
-            startPlaying: { _ in
+            startPlaying: { _,_  in
                 await isPlaying.setValue(true)
                 while await isPlaying.value {
                     let current = await currentTime.value

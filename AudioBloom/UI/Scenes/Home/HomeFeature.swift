@@ -29,14 +29,11 @@ struct HomeFeature {
         case bookReaderAction(BookReaderFeature.Action)
     }
 
-    var fetchBook: @Sendable () async throws -> Book
+    @Dependency(\.apiClient) var apiClient
+
     private enum CancelID {
         case fetch
     }
-
-    static let liveBook = Self(
-        fetchBook: APIClient.live.fetchBook
-    )
 
     var body: some Reducer<State, Action> {
         Scope(state: \.playerControlState, action: /HomeFeature.Action.playerControlAction) {
@@ -60,10 +57,15 @@ struct HomeFeature {
                     state.playerControlState.book = book
                     state.bookReaderState.book = book
                     state.bookModeState.book = book
+                    return .run { send in
+                        await send(.playerControlAction(.onAppear))
+
+                    }
                 case .failure(let error):
                     logger.info("Failed to fetch book: \(error)")
                 }
                 return .none
+
             case .playerControlAction:
                 return .none
             case .bookModeSwitcherAction(.toggleMode):
@@ -86,12 +88,7 @@ private extension HomeFeature {
 
     func handleOnAppear() -> Effect<Action> {
         .run { send in
-            do {
-                let book = try await APIClient.live.fetchBook()
-                await send(.bookFetched(.success(book)))
-            } catch {
-                await send(.bookFetched(.failure(error)))
-            }
+            await send(.bookFetched(Result { try await apiClient.fetchBook() }))
         }
         .cancellable(id: CancelID.fetch, cancelInFlight: true)
     }

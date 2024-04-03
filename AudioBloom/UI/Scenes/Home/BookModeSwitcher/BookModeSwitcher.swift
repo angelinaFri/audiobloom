@@ -12,47 +12,45 @@ struct BookModeSwitcher: View {
     let store: StoreOf<BookModeSwitcherFeature>
 
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            HStack {
-                if viewStore.state.isReaderMode {
-                    Button(action: {
-                        viewStore.send(.togglePlayPause)
-                    }) {
-                        Image(systemName: viewStore.isPlaying ? "pause.fill" : "play.fill")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                            .frame(width: 60, height: 60)
-                            .background(.white)
-                            .clipShape(Circle())
-                            .overlay(
-                                Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
-                            )
-                    }
-                    .transition(.scale)
+        HStack {
+            if store.state.isReaderMode {
+                Button(action: {
+                    store.send(.togglePlayPause)
+                }) {
+                    Image(systemName: store.isPlaying ? "pause.fill" : "play.fill")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .frame(width: 60, height: 60)
+                        .background(.white)
+                        .clipShape(Circle())
+                        .overlay(
+                            Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
+                        )
                 }
-                HStack(spacing: 8) {
-                    Button(action: {
-                        viewStore.send(.toggleMode)
-                    }) {
-                        Image(systemName: "headphones")
-                            .configured(for: !viewStore.state.isReaderMode)
-                    }
-
-                    Button(action: {
-                        viewStore.send(.toggleMode)
-                    }) {
-                        Image(systemName: "text.alignleft")
-                            .configured(for: viewStore.state.isReaderMode)
-                    }
-                }
-                .background(Capsule().foregroundColor(.white))
-                .padding(.all, 4)
-                .overlay(
-                    Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
-                )
-                .animation(.easeInOut(duration: 0.35), value: viewStore.book.mode)
+                .transition(.scale)
             }
+            HStack(spacing: 8) {
+                Button(action: {
+                    store.send(.toggleMode)
+                }) {
+                    Image(systemName: "headphones")
+                        .configured(for: !store.state.isReaderMode)
+                }
+
+                Button(action: {
+                    store.send(.toggleMode)
+                }) {
+                    Image(systemName: "text.alignleft")
+                        .configured(for: store.state.isReaderMode)
+                }
+            }
+            .background(Capsule().foregroundColor(.white))
+            .padding(.all, 4)
+            .overlay(
+                Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
+            )
+            .animation(.easeInOut(duration: 0.35), value: store.book.mode)
         }
     }
 }

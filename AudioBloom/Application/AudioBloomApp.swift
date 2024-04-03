@@ -13,7 +13,7 @@ struct AudioBloomApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView(store: Store(initialState: HomeFeature.State()) {
-                HomeFeature.liveBook
+                HomeFeature()
             })
         }
     }

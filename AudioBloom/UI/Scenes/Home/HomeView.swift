@@ -14,11 +14,11 @@ struct HomeView: View {
     let store: StoreOf<HomeFeature>
 
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        VStack {
             ZStack {
-                if let mode = viewStore.book.mode, mode == .audio {
+                if let mode = store.book.mode, mode == .audio {
                     VStack {
-                        bookCoverImage(viewStore)
+                        bookCoverImage(store)
                             .padding(.vertical, 40)
                         PlayerControlsView(store: self.store.scope(
                             state: \.playerControlState,
@@ -45,7 +45,7 @@ struct HomeView: View {
             }
             .padding(.horizontal, 16)
             .onAppear {
-                viewStore.send(.onAppear)
+                store.send(.onAppear)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -57,7 +57,7 @@ struct HomeView: View {
 private extension HomeView {
 
     @ViewBuilder
-    func bookCoverImage(_ store: HomeFeatureViewStore) -> some View {
+    func bookCoverImage(_ store: StoreOf<HomeFeature>) -> some View {
         if let url = URL(string: store.book.coverPageImage) {
             CachedAsyncImage(url: url)
                 .aspectRatio(contentMode: .fit)
@@ -76,7 +76,7 @@ private extension HomeView {
 
 #Preview {
     HomeView(store: Store(initialState: HomeFeature.State()) {
-        HomeFeature(fetchBook: { Book.sample })
+        HomeFeature()
     })
 }
 

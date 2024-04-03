@@ -24,7 +24,6 @@
 		5830EA262BB5E97400ED6DEF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA252BB5E97400ED6DEF /* HomeView.swift */; };
 		5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */; };
 		5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */; };
-		58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */; };
 		58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AD2BB98E00009A824B /* Double + Ext.swift */; };
 		58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */; };
 		58D8E6BA2BBA8504009A824B /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */; };
@@ -34,6 +33,9 @@
 		58D8E6C32BBBA8A6009A824B /* BookModeSwitcherFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6C22BBBA8A6009A824B /* BookModeSwitcherFeature.swift */; };
 		58D8E6C62BBC8867009A824B /* ImageLoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6C52BBC8867009A824B /* ImageLoaderManager.swift */; };
 		58D8E6C92BBC88B5009A824B /* CashedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6C82BBC88B5009A824B /* CashedAsyncImage.swift */; };
+		58D8E6CC2BBD5277009A824B /* LiveAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6CB2BBD5277009A824B /* LiveAPIClient.swift */; };
+		58D8E6CE2BBD9A5D009A824B /* TimerCountdownFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6CD2BBD9A5D009A824B /* TimerCountdownFormatStyle.swift */; };
+		58D8E6D02BBDB45E009A824B /* Collection + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6CF2BBDB45E009A824B /* Collection + Ext.swift */; };
 		58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD52BB697120077F2AA /* DLogger.swift */; };
 		58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */; };
 /* End PBXBuildFile section */
@@ -74,7 +76,6 @@
 		5830EA252BB5E97400ED6DEF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClient.swift; sourceTree = "<group>"; };
 		5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAudioPlayerClient.swift; sourceTree = "<group>"; };
-		58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter + Ext.swift"; sourceTree = "<group>"; };
 		58D8E6AD2BB98E00009A824B /* Double + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Ext.swift"; sourceTree = "<group>"; };
 		58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcher.swift; sourceTree = "<group>"; };
 		58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
@@ -84,6 +85,9 @@
 		58D8E6C22BBBA8A6009A824B /* BookModeSwitcherFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcherFeature.swift; sourceTree = "<group>"; };
 		58D8E6C52BBC8867009A824B /* ImageLoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderManager.swift; sourceTree = "<group>"; };
 		58D8E6C82BBC88B5009A824B /* CashedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashedAsyncImage.swift; sourceTree = "<group>"; };
+		58D8E6CB2BBD5277009A824B /* LiveAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAPIClient.swift; sourceTree = "<group>"; };
+		58D8E6CD2BBD9A5D009A824B /* TimerCountdownFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownFormatStyle.swift; sourceTree = "<group>"; };
+		58D8E6CF2BBDB45E009A824B /* Collection + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection + Ext.swift"; sourceTree = "<group>"; };
 		58E3ACD52BB697120077F2AA /* DLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLogger.swift; sourceTree = "<group>"; };
 		58E3ACD72BB697820077F2AA /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,8 +204,8 @@
 		5830EA112BB5E74100ED6DEF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				58D8E6CA2BBD5260009A824B /* Clients */,
 				5830EA1B2BB5E8C300ED6DEF /* DataLoadingStatus.swift */,
-				5830EA1D2BB5E8DE00ED6DEF /* APIClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -210,8 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				5830EA232BB5E94100ED6DEF /* Bundle + ext.swift */,
-				58D8E6AB2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift */,
 				58D8E6AD2BB98E00009A824B /* Double + Ext.swift */,
+				58D8E6CF2BBDB45E009A824B /* Collection + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,8 +318,18 @@
 			isa = PBXGroup;
 			children = (
 				58D8E6C82BBC88B5009A824B /* CashedAsyncImage.swift */,
+				58D8E6CD2BBD9A5D009A824B /* TimerCountdownFormatStyle.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		58D8E6CA2BBD5260009A824B /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				5830EA1D2BB5E8DE00ED6DEF /* APIClient.swift */,
+				58D8E6CB2BBD5277009A824B /* LiveAPIClient.swift */,
+			);
+			path = Clients;
 			sourceTree = "<group>";
 		};
 		58E3ACD32BB696D60077F2AA /* Helpers */ = {
@@ -476,6 +490,7 @@
 			files = (
 				58D8E6C62BBC8867009A824B /* ImageLoaderManager.swift in Sources */,
 				58D8E6C92BBC88B5009A824B /* CashedAsyncImage.swift in Sources */,
+				58D8E6CE2BBD9A5D009A824B /* TimerCountdownFormatStyle.swift in Sources */,
 				58D8E6BF2BBBA60B009A824B /* BookReaderView.swift in Sources */,
 				58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */,
 				5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */,
@@ -485,6 +500,7 @@
 				5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */,
 				5830EA222BB5E90E00ED6DEF /* Book.swift in Sources */,
 				58E3ACD62BB697120077F2AA /* DLogger.swift in Sources */,
+				58D8E6D02BBDB45E009A824B /* Collection + Ext.swift in Sources */,
 				5830EA1C2BB5E8C300ED6DEF /* DataLoadingStatus.swift in Sources */,
 				58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */,
 				5830EA1E2BB5E8DE00ED6DEF /* APIClient.swift in Sources */,
@@ -492,7 +508,7 @@
 				58E3ACD82BB697820077F2AA /* ConsoleLogger.swift in Sources */,
 				58D8E6BA2BBA8504009A824B /* PlayerControlsView.swift in Sources */,
 				5830EA242BB5E94100ED6DEF /* Bundle + ext.swift in Sources */,
-				58D8E6AC2BB7E06A009A824B /* DateComponentsFormatter + Ext.swift in Sources */,
+				58D8E6CC2BBD5277009A824B /* LiveAPIClient.swift in Sources */,
 				58D8E6C32BBBA8A6009A824B /* BookModeSwitcherFeature.swift in Sources */,
 				5830E9E42BB5E46100ED6DEF /* AudioBloomApp.swift in Sources */,
 			);
@@ -664,8 +680,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -698,8 +714,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

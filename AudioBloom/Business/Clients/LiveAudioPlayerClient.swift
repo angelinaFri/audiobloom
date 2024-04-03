@@ -16,8 +16,10 @@ extension AudioPlayerClient: DependencyKey {
         return Self(
             totalTime: { await audioPlayer.totalTime },
             currentTime: { await audioPlayer.currentTime },
-            startPlaying: { url in try await audioPlayer.start(url: url) },
-            stopPlaying: { await audioPlayer.stop() }, 
+            startPlaying: { url, speed in
+                try await audioPlayer.start(url: url, speed: speed)
+            },
+            stopPlaying: { await audioPlayer.stop() },
             seekTo: { time in await audioPlayer.seekTo(time) },
             setRate: { rate in await audioPlayer.setRate(rate) }
         )
@@ -55,25 +57,25 @@ private actor AudioPlayer {
 
     func setRate(_ rate: Float) async {
         self.player?.rate = rate
-        if self.player?.timeControlStatus != .playing {
-            self.player?.playImmediately(atRate: rate)
-        }
     }
 
-    func start(url: URL) async throws -> Bool {
+    func start(url: URL, speed: Float) async throws -> Bool {
         if let currentUrl = player?.currentItem?.asset as? AVURLAsset, currentUrl.url == url {
+            logger.info("Resuming at player rate: \(speed)")
+            self.player?.rate = speed
             self.player?.play()
             return true
         } else {
             self.stop()
-            let playerItem = AVPlayerItem(url: url)
-            self.player = AVPlayer(playerItem: playerItem)
-            let isReadyToPlay = try await waitForPlayerItemReady(playerItem: playerItem)
+            self.playerItem = AVPlayerItem(url: url)
+            self.player = AVPlayer(playerItem: self.playerItem!)
+            let isReadyToPlay = try await waitForPlayerItemReady(playerItem: self.playerItem!)
             guard isReadyToPlay else { return false }
             if let currentTime = self.player?.currentTime() {
                 logger.info("Current time: \(CMTimeGetSeconds(currentTime))")
             }
-            self.player?.play()
+            logger.info("Starting new URL at player rate: \(speed)")
+            self.player?.playImmediately(atRate: speed)
             return true
         }
     }

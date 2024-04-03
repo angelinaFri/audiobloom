@@ -100,7 +100,8 @@ private extension PlayerControlsView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 26, height: 26)
             }
-
+            .disabled(store.currentChapterIndex == 0)
+            .opacity(store.currentChapterIndex == 0 ? 0.3 : 1)
             Button(action: {
                 store.send(.rewind)
             }) {
@@ -136,6 +137,8 @@ private extension PlayerControlsView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 26, height: 26)
             }
+            .disabled(store.currentChapterIndex == store.book.chapters.count - 1)
+            .opacity(store.currentChapterIndex == store.book.chapters.count - 1 ? 0.3 : 1)
         }
         .foregroundColor(.black)
         .padding(.top, 40)

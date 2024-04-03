@@ -56,10 +56,10 @@ struct HomeFeature {
                 switch result {
                 case .success(let book):
                     state.book = book
+                    state.book.mode = .audio
                     state.playerControlState.book = book
                     state.bookReaderState.book = book
                     state.bookModeState.book = book
-                    state.bookModeState.book.mode = .audio
                 case .failure(let error):
                     logger.info("Failed to fetch book: \(error)")
                 }
@@ -68,7 +68,6 @@ struct HomeFeature {
                 return .none
             case .bookModeSwitcherAction(.toggleMode):
                 state.book.mode = state.book.mode == .audio ? .reader : .audio
-                logger.info("\(state.book.mode)")
                 return .none
             case .bookModeSwitcherAction(.togglePlayPause):
                 return .none

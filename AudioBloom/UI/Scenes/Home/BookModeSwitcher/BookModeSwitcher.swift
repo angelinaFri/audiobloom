@@ -36,17 +36,18 @@ struct BookModeSwitcher: View {
                         viewStore.send(.toggleMode)
                     }) {
                         Image(systemName: "headphones")
-                            .configured(for: viewStore.state.isReaderMode)
+                            .configured(for: !viewStore.state.isReaderMode)
                     }
 
                     Button(action: {
                         viewStore.send(.toggleMode)
                     }) {
                         Image(systemName: "text.alignleft")
-                            .configured(for: !viewStore.state.isReaderMode)
+                            .configured(for: viewStore.state.isReaderMode)
                     }
                 }
                 .background(Capsule().foregroundColor(.white))
+                .padding(.all, 4)
                 .overlay(
                     Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 0.5)
                 )

@@ -16,7 +16,7 @@ struct HomeView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack {
-                if viewStore.book.mode == .audio {
+                if let mode = viewStore.book.mode, mode == .audio {
                     VStack {
                         bookCoverImage(viewStore)
                             .padding(.vertical, 40)

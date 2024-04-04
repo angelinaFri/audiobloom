@@ -30,14 +30,15 @@ struct BookReaderFeature {
         Reduce { state, action in
             switch action {
             case .nextChapter:
-                state.currentChapterIndex = min(state.currentChapterIndex + 1,
-                                                state.book.chapters.count - 1)
+                if state.currentChapterIndex < state.book.chapters.count - 1 {
+                    state.currentChapterIndex += 1
+                }
                 return .none
             case .previousChapter:
                 state.currentChapterIndex = max(state.currentChapterIndex - 1, 0)
                 return .none
             case .setChapterIndex(let index):
-                state.currentChapterIndex = index
+                state.currentChapterIndex = max(0, min(index, state.book.chapters.count - 1))
                 logger.info("Updated index: \(state.currentChapterIndex)")
                 return .none
             }

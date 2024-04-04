@@ -71,9 +71,6 @@ private actor AudioPlayer {
             self.player = AVPlayer(playerItem: self.playerItem!)
             let isReadyToPlay = try await waitForPlayerItemReady(playerItem: self.playerItem!)
             guard isReadyToPlay else { return false }
-            if let currentTime = self.player?.currentTime() {
-                logger.info("Current time: \(CMTimeGetSeconds(currentTime))")
-            }
             logger.info("Starting new URL at player rate: \(speed)")
             self.player?.playImmediately(atRate: speed)
             return true

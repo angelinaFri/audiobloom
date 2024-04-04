@@ -261,7 +261,6 @@ private extension PlayerControlsFeature {
             let progress = state.currentTime / state.duration
             state.mode = .playing(progress: progress)
         }
-        logger.info("Current Time: \(String(describing: state.currentTime))")
     }
 
     func resetStateForNewChapter(state: inout State) {

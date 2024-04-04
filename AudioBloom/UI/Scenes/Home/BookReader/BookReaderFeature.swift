@@ -8,6 +8,8 @@
 import Foundation
 import ComposableArchitecture
 
+private let logger = DLogger(identifier: String(describing: BookReaderFeature.self))
+
 @Reducer
 struct BookReaderFeature {
     
@@ -18,6 +20,7 @@ struct BookReaderFeature {
     }
     
     enum Action {
+        // For future, if I have buttons
         case nextChapter
         case previousChapter
         case setChapterIndex(Int)
@@ -35,6 +38,7 @@ struct BookReaderFeature {
                 return .none
             case .setChapterIndex(let index):
                 state.currentChapterIndex = index
+                logger.info("Updated index: \(state.currentChapterIndex)")
                 return .none
             }
         }

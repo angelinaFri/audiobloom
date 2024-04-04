@@ -65,25 +65,42 @@ struct HomeFeature {
                     logger.info("Failed to fetch book: \(error)")
                 }
                 return .none
-            case .playerControlAction:
-                let isPlaying = if case .playing(_) = state
-                    .playerControlState.mode { true } else { false }
-                return .run { send in
-                    await send(.bookModeSwitcherAction(.delegate(.setIsPlaying(isPlaying))))
+            case let .playerControlAction(action):
+                let isPlaying = if case .playing(_) = state.playerControlState.mode { true } else { false }
+                state.bookModeState.isPlaying = isPlaying
+                switch action {
+                case .playForward, .playBackward:
+                    state.bookReaderState.currentChapterIndex = state.playerControlState.currentChapterIndex
+                    let index = state.playerControlState.currentChapterIndex
+                    return .run { send in
+                        logger.info("Switched index: \(index)")
+                        await send(.bookReaderAction(.setChapterIndex(index)))
+                    }
+                    // TODO: revision of using default here
+                default:
+                    break
                 }
-            case .bookModeSwitcherAction(let action):
+                return .none
+            case let .bookModeSwitcherAction(action):
                 switch action {
                 case .toggleMode:
                     state.book.mode = state.book.mode == .audio ? .reader : .audio
                     return .none
                 case .togglePlayPause:
-                    logger.info("Toggled play/pause.")
                     return .run { send in
                         await send(.playerControlAction(.togglePlayPause))
                     }
-                case .delegate(.setIsPlaying(let isPlaying)): return .none
                 }
-            case .bookReaderAction: return .none
+            case let .bookReaderAction(action):
+                if case .setChapterIndex(let index) = action {
+                    state.playerControlState.currentChapterIndex = index
+                    state.bookModeState.isPlaying = true
+                    return .run { send in
+                        await send(.playerControlAction(.togglePlayPause))
+                    }
+                } else {
+                    return .none
+                }
             }
         }
     }

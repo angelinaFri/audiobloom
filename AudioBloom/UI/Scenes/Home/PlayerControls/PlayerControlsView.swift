@@ -1,68 +1,41 @@
 //
-//  HomeView.swift
+//  PlayerControlsView.swift
 //  AudioBloom
 //
-//  Created by Angelina on 28.03.2024.
+//  Created by Angelina on 01.04.2024.
 //
 
 import SwiftUI
 import ComposableArchitecture
 
-typealias HomeFeatureViewStore = ViewStore<HomeFeature.State, HomeFeature.Action>
+typealias PlayerControlsFeatureViewStore = ViewStore<PlayerControlsFeature.State, PlayerControlsFeature.Action>
 
-struct HomeView: View {
-    let store: StoreOf<HomeFeature>
-
-    public init(store: StoreOf<HomeFeature>) {
-        self.store = store
-    }
+struct PlayerControlsView: View {
+    let store: StoreOf<PlayerControlsFeature>
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                VStack(spacing: 40) {
-                    bookCoverImage(viewStore)
-                    keyPointCounter(viewStore)
-                }
-                VStack(spacing: 12) {
-                    keyPointView(viewStore)
+            VStack(spacing: 40) {
+                VStack(spacing: 8) {
+                    VStack(spacing: 4) {
+                        keyPointCounter(viewStore)
+                        keyPointView(viewStore)
+                    }
                     sliderView(viewStore)
                     speedButton(viewStore)
                 }
                 playerControlButton(viewStore)
-                BookModeSwitcher()
-                    .padding(.vertical, 40)
-
             }
-            .padding(.horizontal, 16)
             .onAppear {
                 viewStore.send(.onAppear)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background { Color.cream.ignoresSafeArea()
-        }
     }
-
 }
 
-private extension HomeView {
+private extension PlayerControlsView {
 
-    private func bookCoverImage(_ store: HomeFeatureViewStore) -> some View {
-        AsyncImage(url: URL(string: store.book.coverPageImage)) { phase in
-            if let image = phase.image {
-                image.resizable().aspectRatio(contentMode: .fit)
-            } else if phase.error != nil {
-                Image(.emptyBook)
-            } else {
-                ProgressView()
-            }
-        }
-        .cornerRadius(16)
-        .padding(.horizontal, 64)
-    }
-
-    private func keyPointCounter(_ store: HomeFeatureViewStore) -> some View {
+    func keyPointCounter(_ store: PlayerControlsFeatureViewStore) -> some View {
         HStack {
             Text("KEY POINT")
             Text("\(store.book.chapters[store.currentChapterIndex].id)")
@@ -73,7 +46,7 @@ private extension HomeView {
         .foregroundColor(.secondary)
     }
 
-    private func keyPointView(_ store: HomeFeatureViewStore) -> some View {
+    func keyPointView(_ store: PlayerControlsFeatureViewStore) -> some View {
         Text("\(store.book.chapters[store.currentChapterIndex].keyPoint)")
             .multilineTextAlignment(.center)
             .fontWeight(.medium)
@@ -81,13 +54,11 @@ private extension HomeView {
             .padding(.top, 8)
     }
 
-    private func sliderView(_ store: HomeFeatureViewStore) -> some View {
+    func sliderView(_ store: PlayerControlsFeatureViewStore) -> some View {
         HStack {
-            if let timeString = DateComponentsFormatter.minuteSecondFormatter.string(from: store.currentTime) {
-                Text(timeString)
-                    .frame(minWidth: 50)
-                    .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-            }
+            Text(store.currentTime, format: .timerCountdown)
+                .frame(minWidth: 50)
+                .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
             Slider(
                 value: Binding(
                     get: { store.currentTime },
@@ -95,22 +66,20 @@ private extension HomeView {
                         store.send(.sliderToTime(newTime))
                     }
                 ),
-                in: 0...max(store.duration, 0.1) 
+                in: 0...max(store.duration, 0.1)
             )
             .disabled(store.mode == .notPlaying)
-            if let timeString = DateComponentsFormatter.minuteSecondFormatter.string(from: store.duration) {
-                Text(timeString)
-                    .frame(minWidth: 50)
-                    .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-            }
+            Text(store.duration, format: .timerCountdown)
+                .frame(minWidth: 50)
+                .foregroundColor(.secondary).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
         }
     }
 
-    private func speedButton(_ store: HomeFeatureViewStore) -> some View {
+    func speedButton(_ store: PlayerControlsFeatureViewStore) -> some View {
         Button(action: {
             store.send(.changeSpeed)
         }) {
-            Text("Speed \(store.currentSpeed.asString())x")
+            Text("Speed \(store.speeds[store.currentSpeedIndex].asString())x")
                 .fontWeight(.bold)
                 .font(.subheadline)
                 .foregroundColor(.black)
@@ -120,7 +89,7 @@ private extension HomeView {
         }
     }
 
-    private func playerControlButton(_ store: HomeFeatureViewStore) -> some View {
+    func playerControlButton(_ store: PlayerControlsFeatureViewStore) -> some View {
         HStack(spacing: 32) {
             Button(action: {
                 store.send(.playBackward)
@@ -130,7 +99,8 @@ private extension HomeView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 26, height: 26)
             }
-
+            .disabled(store.currentChapterIndex == 0)
+            .opacity(store.currentChapterIndex == 0 ? 0.3 : 1)
             Button(action: {
                 store.send(.rewind)
             }) {
@@ -139,9 +109,8 @@ private extension HomeView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
             }
-
             Button(action: {
-                store.send(.playButtonTapped)
+                store.send(.togglePlayPause)
             }) {
                 Image(systemName: store.mode.is(\.playing) ? "pause.fill" : "play.fill")
                     .resizable()
@@ -166,6 +135,8 @@ private extension HomeView {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 26, height: 26)
             }
+            .disabled(store.currentChapterIndex == store.book.chapters.count - 1)
+            .opacity(store.currentChapterIndex == store.book.chapters.count - 1 ? 0.3 : 1)
         }
         .foregroundColor(.black)
         .padding(.top, 40)
@@ -173,10 +144,7 @@ private extension HomeView {
 }
 
 #Preview {
-    HomeView(store: Store(initialState: HomeFeature.State()) {
-        HomeFeature(fetchBook: { Book.sample })
+    PlayerControlsView(store: Store(initialState: PlayerControlsFeature.State()) {
+        PlayerControlsFeature()
     })
 }
-
-
-

@@ -1,17 +1,17 @@
 //
-//  RootFeature.swift
+//  PlayerControlsFeature.swift
 //  AudioBloom
 //
-//  Created by Angelina on 28.03.2024.
+//  Created by Angelina on 01.04.2024.
 //
 
 import Foundation
 import ComposableArchitecture
 
-private let logger = DLogger(identifier: String(describing: HomeFeature.self))
+private let logger = DLogger(identifier: String(describing: PlayerControlsFeature.self))
 
 @Reducer
-struct HomeFeature {
+struct PlayerControlsFeature {
 
     @ObservableState
     struct State: Equatable {
@@ -19,8 +19,8 @@ struct HomeFeature {
         var book: Book = .idle
         var duration: TimeInterval = 0
         var currentTime: TimeInterval = 0
-        var currentSpeed: Double = 1
-        var mode = Mode.notPlaying            
+        var currentSpeedIndex: Int = 1
+        var mode = Mode.notPlaying
         var currentChapterIndex: Int = 0
     }
 
@@ -33,7 +33,8 @@ struct HomeFeature {
 
     enum Action {
         case delegate(Delegate)
-        case playButtonTapped
+        case onAppear
+        case togglePlayPause
         case fastForward
         case rewind
         case playForward
@@ -42,8 +43,6 @@ struct HomeFeature {
         case changeSpeed
         case updateDuration(TimeInterval)
         case updateCurrentTime(TimeInterval)
-        case onAppear
-        case bookFetched(Result<Book, Error>)
 
         @CasePathable
         enum Delegate {
@@ -55,22 +54,17 @@ struct HomeFeature {
     @Dependency(\.audioPlayer) var audioPlayer
     @Dependency(\.mainQueue) var mainQueue
 
-    var fetchBook: @Sendable () async throws -> Book
     private enum CancelID {
         case play
         case fetch
     }
-
-    static let liveBook = Self(
-        fetchBook: APIClient.live.fetchBook
-    )
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .delegate(let playbackAction):
                 return handlePlaybackDelegateActions(playbackAction, state: &state)
-            case .playButtonTapped:
+            case .togglePlayPause:
                 return handlePlayButtonTapped(state: &state)
             case let .updateDuration(duration):
                 return handleUpdateDuration(duration, state: &state)
@@ -84,16 +78,6 @@ struct HomeFeature {
                 return handleSliderToTime(newTime, state: &state)
             case .changeSpeed:
                 return handleChangeSpeed(state: &state)
-            case .onAppear:
-                return handleOnAppear()
-            case .bookFetched(let result):
-                switch result {
-                case .success(let book):
-                    state.book = book
-                case .failure(let error):
-                    logger.info("Failed to fetch book: \(error)")
-                }
-                return .none
             case .playForward:
                 if state.currentChapterIndex < state.book.chapters.count - 1 {
                     state.currentChapterIndex += 1
@@ -110,6 +94,8 @@ struct HomeFeature {
                 } else {
                     return .none
                 }
+            case .onAppear:
+                return play(state: &state)
             }
         }
     }
@@ -118,7 +104,7 @@ struct HomeFeature {
 
 // MARK: - Private
 
-private extension HomeFeature {
+private extension PlayerControlsFeature {
 
     func handlePlaybackDelegateActions(_ action: Action.Delegate, state: inout State) -> Effect<Action> {
         switch action {
@@ -177,29 +163,16 @@ private extension HomeFeature {
     }
 
     func handleChangeSpeed(state: inout State) -> Effect<Action> {
-        if let currentIndex = state.speeds.firstIndex(of: state.currentSpeed) {
-            let nextIndex = (currentIndex + 1) % state.speeds.count
-            state.currentSpeed = state.speeds[nextIndex]
-        } else {
-            // Default to 1x if current speed is not found
-            state.currentSpeed = 1.0
-        }
-        let speed = state.currentSpeed
-        return .run { _ in
-            await self.audioPlayer.setRate(Float(speed))
-        }
+        state.currentSpeedIndex = (state.currentSpeedIndex + 1) % state.speeds.count
+        let currentSpeed = state.speeds[state.currentSpeedIndex]
+        return updatePlayerSpeed(to: currentSpeed, state: &state)
     }
 
-    func handleOnAppear() -> Effect<Action> {
-        .run { send in
-            do {
-                let book = try await APIClient.live.fetchBook()
-                await send(.bookFetched(.success(book)))
-            } catch {
-                await send(.bookFetched(.failure(error)))
-            }
+    func updatePlayerSpeed(to speed: Double, state: inout State) -> Effect<Action> {
+        state.mode = .playing(progress: state.currentTime / state.duration)
+        return .run { [audioPlayer] _ in
+            await audioPlayer.setRate(Float(speed))
         }
-        .cancellable(id: CancelID.fetch, cancelInFlight: true)
     }
 
     func startPlaybackMonitoring(state: inout State) -> Effect<Action> {
@@ -220,37 +193,61 @@ private extension HomeFeature {
         .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
-    private func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
-        let chapterUrl = state.book.chapters[state.currentChapterIndex].audio
-        guard let url = URL(string: chapterUrl) else {
+    func startPlayback(currentTime: Double? = nil, state: inout State) -> Effect<Action> {
+        guard let url = getChapterURL(for: state) else {
             return .run { send in
                 await send(.delegate(.playbackFailed))
             }
         }
 
-        if let currentTime = currentTime {
-            state.mode = .playing(progress: currentTime / state.duration)
-        } else {
-            state.mode = .playing(progress: 0)
+        updatePlaybackState(with: currentTime, state: &state)
+
+        return initiatePlayback(with: url, currentTime: currentTime, state: &state)
+            .cancellable(id: CancelID.play, cancelInFlight: true)
+    }
+
+    func getChapterURL(for state: State) -> URL? {
+        guard let chapterUrl = state.book.chapters[safe: state.currentChapterIndex]?.audio else {
+            logger.error("Invalid chapter URL.")
+            return nil
         }
+        return chapterUrl
+    }
+
+    func updatePlaybackState(with currentTime: Double?, state: inout State) {
+        let progress = currentTime.map { $0 / state.duration } ?? 0
+        state.mode = .playing(progress: progress)
+    }
+
+    func initiatePlayback(with url: URL, currentTime: Double?, state: inout State) -> Effect<Action> {
+        let speed = state.speeds[state.currentSpeedIndex]
+        logger.info("Speed before playing: \(speed)")
 
         return .run { send in
-            // If there's a specific time to seek to, do that first
+
+            // Seek to the current time if specified
             if let currentTime = currentTime {
                 await self.audioPlayer.seekTo(time: currentTime)
             }
 
+            // Attempt to start playing the audio
             do {
-                _ = try await self.audioPlayer.startPlaying(url: url)
+                await self.audioPlayer.setRate(Float(speed))
+                _ = try await self.audioPlayer.startPlaying(url: url, speed: Float(speed))
                 await send(.delegate(.playbackStarted))
             } catch {
+                logger.error("Playback failed with error: \(error.localizedDescription)")
                 await send(.delegate(.playbackFailed))
             }
         }
-        .cancellable(id: CancelID.play, cancelInFlight: true)
     }
 
     func play(state: inout State) -> Effect<Action> {
+        guard !state.book.chapters.isEmpty else {
+            return .run { send in
+                await send(.delegate(.playbackFailed))
+            }
+        }
         return startPlayback(state: &state)
     }
 
@@ -263,14 +260,13 @@ private extension HomeFeature {
             let progress = state.currentTime / state.duration
             state.mode = .playing(progress: progress)
         }
-        logger.info("Current Time: \(String(describing: state.currentTime))")
     }
 
     func resetStateForNewChapter(state: inout State) {
         state.currentTime = 0
         state.duration = 0
-        state.currentSpeed = 1
         state.mode = .notPlaying
     }
+
 }
 

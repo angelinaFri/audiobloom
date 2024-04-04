@@ -28,5 +28,5 @@ struct CachedAsyncImage: View {
 }
 
 #Preview {
-    CachedAsyncImage(url: URL(string: Book.sample.coverPageImage)!)
+    CachedAsyncImage(url: Book.sample.coverPageImage!)
 }

@@ -207,12 +207,11 @@ private extension PlayerControlsFeature {
     }
 
     func getChapterURL(for state: State) -> URL? {
-        guard let chapterUrl = state.book.chapters[safe: state.currentChapterIndex]?.audio,
-              let url = URL(string: chapterUrl) else {
+        guard let chapterUrl = state.book.chapters[safe: state.currentChapterIndex]?.audio else {
             logger.error("Invalid chapter URL.")
             return nil
         }
-        return url
+        return chapterUrl
     }
 
     func updatePlaybackState(with currentTime: Double?, state: inout State) {

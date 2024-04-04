@@ -58,7 +58,7 @@ private extension HomeView {
 
     @ViewBuilder
     func bookCoverImage(_ store: StoreOf<HomeFeature>) -> some View {
-        if let url = URL(string: store.book.coverPageImage) {
+        if let url = store.book.coverPageImage {
             CachedAsyncImage(url: url)
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(16)

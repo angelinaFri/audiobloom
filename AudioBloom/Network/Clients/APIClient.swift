@@ -20,18 +20,18 @@ extension APIClient: TestDependencyKey {
                 Book(
                     id: 1,
                     name: "Sample Book",
-                    coverPageImage: "https://example.com/sample.jpg",
+                    coverPageImage: URL(string: "https://example.com/sample.jpg"),
                     chapters: [
                         Chapter(
                             id: 1,
                             text: "This is the first chapter.",
-                            audio: "https://example.com/chapter1.mp3",
+                            audio: URL(string: "https://example.com/chapter1.mp3"),
                             keyPoint: "Key point of chapter 1"
                         ),
                         Chapter(
                             id: 2,
                             text: "This is the second chapter.",
-                            audio: "https://example.com/chapter2.mp3",
+                            audio: URL(string: "https://example.com/chapter2.mp3"),
                             keyPoint: "Key point of chapter 2"
                         )
                     ],

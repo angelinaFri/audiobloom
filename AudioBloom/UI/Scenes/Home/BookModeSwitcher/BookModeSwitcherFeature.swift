@@ -23,6 +23,13 @@ struct BookModeSwitcherFeature {
     enum Action {
         case togglePlayPause
         case toggleMode
+        case delegate(Delegate)
+
+        @CasePathable
+        enum Delegate {
+            case setIsPlaying(Bool)
+        }
+
     }
 
     var body: some Reducer<State, Action> {
@@ -33,6 +40,9 @@ struct BookModeSwitcherFeature {
                 return .none
             case .toggleMode:
                 state.isReaderMode.toggle()
+                return .none
+            case let .delegate(.setIsPlaying(isPlaying)):
+                state.isPlaying = isPlaying
                 return .none
             }
         }

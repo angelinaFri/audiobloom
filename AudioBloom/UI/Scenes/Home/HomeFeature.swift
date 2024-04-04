@@ -65,17 +65,25 @@ struct HomeFeature {
                     logger.info("Failed to fetch book: \(error)")
                 }
                 return .none
-
             case .playerControlAction:
-                return .none
-            case .bookModeSwitcherAction(.toggleMode):
-                state.book.mode = state.book.mode == .audio ? .reader : .audio
-                return .none
-            case .bookModeSwitcherAction(.togglePlayPause):
-                return .none
-            case .bookReaderAction:
-                return .none
-
+                let isPlaying = if case .playing(_) = state
+                    .playerControlState.mode { true } else { false }
+                return .run { send in
+                    await send(.bookModeSwitcherAction(.delegate(.setIsPlaying(isPlaying))))
+                }
+            case .bookModeSwitcherAction(let action):
+                switch action {
+                case .toggleMode:
+                    state.book.mode = state.book.mode == .audio ? .reader : .audio
+                    return .none
+                case .togglePlayPause:
+                    logger.info("Toggled play/pause.")
+                    return .run { send in
+                        await send(.playerControlAction(.togglePlayPause))
+                    }
+                case .delegate(.setIsPlaying(let isPlaying)): return .none
+                }
+            case .bookReaderAction: return .none
             }
         }
     }

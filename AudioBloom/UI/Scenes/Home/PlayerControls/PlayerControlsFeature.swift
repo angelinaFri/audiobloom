@@ -34,7 +34,7 @@ struct PlayerControlsFeature {
     enum Action {
         case delegate(Delegate)
         case onAppear
-        case playButtonTapped
+        case togglePlayPause
         case fastForward
         case rewind
         case playForward
@@ -64,7 +64,7 @@ struct PlayerControlsFeature {
             switch action {
             case .delegate(let playbackAction):
                 return handlePlaybackDelegateActions(playbackAction, state: &state)
-            case .playButtonTapped:
+            case .togglePlayPause:
                 return handlePlayButtonTapped(state: &state)
             case let .updateDuration(duration):
                 return handleUpdateDuration(duration, state: &state)

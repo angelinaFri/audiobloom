@@ -110,7 +110,7 @@ private extension PlayerControlsView {
                     .frame(width: 30, height: 30)
             }
             Button(action: {
-                store.send(.playButtonTapped)
+                store.send(.togglePlayPause)
             }) {
                 Image(systemName: store.mode.is(\.playing) ? "pause.fill" : "play.fill")
                     .resizable()

@@ -125,6 +125,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		580A1D7F2BC02D7200BF7A7D /* AudioBloom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioBloom;
+			sourceTree = "<group>";
+		};
 		5830E9D72BB5E46100ED6DEF = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +156,7 @@
 		5830E9E22BB5E46100ED6DEF /* AudioBloom */ = {
 			isa = PBXGroup;
 			children = (
+				580A1D7F2BC02D7200BF7A7D /* AudioBloom */,
 				58D8E6AF2BB99449009A824B /* Application */,
 				58D8E6B62BBA83E6009A824B /* UI */,
 				5830EA272BB5ED1200ED6DEF /* Business */,

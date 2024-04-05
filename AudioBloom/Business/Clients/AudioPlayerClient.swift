@@ -19,9 +19,10 @@ struct AudioPlayerClient {
 }
 
 extension AudioPlayerClient: TestDependencyKey {
-    static var previewValue: Self {
+    
+    static var testValue: Self {
         let isPlaying = ActorIsolated(false)
-        let totalTime = ActorIsolated(45.0)
+        let totalTime = ActorIsolated(100.0)
         let currentTime = ActorIsolated(0.0)
         let playbackRate = ActorIsolated<Float>(1.0)
 
@@ -56,7 +57,7 @@ extension AudioPlayerClient: TestDependencyKey {
         )
     }
 
-    static let testValue = Self()
+    static let previewValue = testValue
 }
 
 

@@ -31,7 +31,7 @@ struct PlayerControlsFeature {
         case playing(progress: Double)
     }
 
-    enum Action {
+    enum Action: Equatable {
         case delegate(Delegate)
         case onAppear
         case togglePlayPause

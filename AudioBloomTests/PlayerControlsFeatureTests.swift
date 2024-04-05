@@ -17,6 +17,8 @@ final class PlayerControlsFeatureTests: XCTestCase {
             initialState: PlayerControlsFeature.State(book: .sample)
         ) {
             PlayerControlsFeature()
+        } withDependencies: {
+            $0.audioPlayer = .testValue
         }
 
         await store.send(.togglePlayPause) {

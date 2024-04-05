@@ -20,7 +20,7 @@ struct BookModeSwitcherFeature {
         var isReaderMode: Bool = false
     }
 
-    enum Action {
+    enum Action: Equatable {
         case togglePlayPause
         case toggleMode
     }

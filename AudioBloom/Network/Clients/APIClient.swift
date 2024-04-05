@@ -8,6 +8,10 @@
 import Foundation
 import ComposableArchitecture
 
+enum MockError: Error {
+    case someError
+}
+
 @DependencyClient
 struct APIClient {
     var fetchBook: @Sendable () async throws -> Book
@@ -25,13 +29,13 @@ extension APIClient: TestDependencyKey {
                         Chapter(
                             id: 1,
                             text: "This is the first chapter.",
-                            audio: URL(string: "https://example.com/chapter1.mp3"),
+                            audio: URL(string: "https://example.com/chapter1.mp3")!,
                             keyPoint: "Key point of chapter 1"
                         ),
                         Chapter(
                             id: 2,
                             text: "This is the second chapter.",
-                            audio: URL(string: "https://example.com/chapter2.mp3"),
+                            audio: URL(string: "https://example.com/chapter2.mp3")!,
                             keyPoint: "Key point of chapter 2"
                         )
                     ],
@@ -44,6 +48,12 @@ extension APIClient: TestDependencyKey {
     static let testValue = Self(
         fetchBook: {
             return try await Bundle.main.decode(Book.self, from: "book.json")
+        }
+    )
+
+    static let testErrorValue = Self(
+        fetchBook: {
+            throw MockError.someError
         }
     )
 }

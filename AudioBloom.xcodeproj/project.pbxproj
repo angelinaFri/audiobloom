@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580A1D712BBFD8DA00BF7A7D /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580A1D702BBFD8DA00BF7A7D /* HomeFeatureTests.swift */; };
 		5830E9E42BB5E46100ED6DEF /* AudioBloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */; };
 		5830E9E82BB5E46200ED6DEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5830E9E72BB5E46200ED6DEF /* Assets.xcassets */; };
 		5830E9EB2BB5E46200ED6DEF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5830E9EA2BB5E46200ED6DEF /* Preview Assets.xcassets */; };
-		5830E9F52BB5E46A00ED6DEF /* AudioBloomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */; };
 		5830E9FF2BB5E46A00ED6DEF /* AudioBloomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */; };
 		5830EA012BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */; };
 		5830EA152BB5E87A00ED6DEF /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA142BB5E87A00ED6DEF /* HomeFeature.swift */; };
@@ -24,6 +24,9 @@
 		5830EA262BB5E97400ED6DEF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA252BB5E97400ED6DEF /* HomeView.swift */; };
 		5830EA2A2BB5ED4500ED6DEF /* AudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */; };
 		5830EA2C2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */; };
+		586048B42BBF0E5C002CF6C7 /* BookModeSwitcherFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586048B22BBF0E5C002CF6C7 /* BookModeSwitcherFeatureTests.swift */; };
+		586048BA2BBF1C96002CF6C7 /* BookReaderFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586048B92BBF1C96002CF6C7 /* BookReaderFeatureTests.swift */; };
+		586048BC2BBF286D002CF6C7 /* PlayerControlsFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586048BB2BBF286D002CF6C7 /* PlayerControlsFeatureTests.swift */; };
 		58D8E6AE2BB98E00009A824B /* Double + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6AD2BB98E00009A824B /* Double + Ext.swift */; };
 		58D8E6B22BB99569009A824B /* BookModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */; };
 		58D8E6BA2BBA8504009A824B /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */; };
@@ -58,12 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		580A1D702BBFD8DA00BF7A7D /* HomeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeatureTests.swift; sourceTree = "<group>"; };
 		5830E9E02BB5E46100ED6DEF /* AudioBloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioBloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5830E9E32BB5E46100ED6DEF /* AudioBloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomApp.swift; sourceTree = "<group>"; };
 		5830E9E72BB5E46200ED6DEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5830E9EA2BB5E46200ED6DEF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5830E9F02BB5E46A00ED6DEF /* AudioBloomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioBloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomTests.swift; sourceTree = "<group>"; };
 		5830E9FA2BB5E46A00ED6DEF /* AudioBloomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioBloomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5830E9FE2BB5E46A00ED6DEF /* AudioBloomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITests.swift; sourceTree = "<group>"; };
 		5830EA002BB5E46A00ED6DEF /* AudioBloomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBloomUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -76,6 +79,9 @@
 		5830EA252BB5E97400ED6DEF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5830EA292BB5ED4500ED6DEF /* AudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClient.swift; sourceTree = "<group>"; };
 		5830EA2B2BB5F28800ED6DEF /* LiveAudioPlayerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAudioPlayerClient.swift; sourceTree = "<group>"; };
+		586048B22BBF0E5C002CF6C7 /* BookModeSwitcherFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcherFeatureTests.swift; sourceTree = "<group>"; };
+		586048B92BBF1C96002CF6C7 /* BookReaderFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReaderFeatureTests.swift; sourceTree = "<group>"; };
+		586048BB2BBF286D002CF6C7 /* PlayerControlsFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsFeatureTests.swift; sourceTree = "<group>"; };
 		58D8E6AD2BB98E00009A824B /* Double + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Ext.swift"; sourceTree = "<group>"; };
 		58D8E6B12BB99569009A824B /* BookModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModeSwitcher.swift; sourceTree = "<group>"; };
 		58D8E6B92BBA8504009A824B /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
@@ -167,7 +173,10 @@
 		5830E9F32BB5E46A00ED6DEF /* AudioBloomTests */ = {
 			isa = PBXGroup;
 			children = (
-				5830E9F42BB5E46A00ED6DEF /* AudioBloomTests.swift */,
+				586048B22BBF0E5C002CF6C7 /* BookModeSwitcherFeatureTests.swift */,
+				586048B92BBF1C96002CF6C7 /* BookReaderFeatureTests.swift */,
+				586048BB2BBF286D002CF6C7 /* PlayerControlsFeatureTests.swift */,
+				580A1D702BBFD8DA00BF7A7D /* HomeFeatureTests.swift */,
 			);
 			path = AudioBloomTests;
 			sourceTree = "<group>";
@@ -518,7 +527,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5830E9F52BB5E46A00ED6DEF /* AudioBloomTests.swift in Sources */,
+				586048BA2BBF1C96002CF6C7 /* BookReaderFeatureTests.swift in Sources */,
+				580A1D712BBFD8DA00BF7A7D /* HomeFeatureTests.swift in Sources */,
+				586048B42BBF0E5C002CF6C7 /* BookModeSwitcherFeatureTests.swift in Sources */,
+				586048BC2BBF286D002CF6C7 /* PlayerControlsFeatureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

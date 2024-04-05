@@ -5,7 +5,7 @@
 //  Created by Angelina on 28.03.2024.
 //
 
-@preconcurrency import AVFoundation
+import AVFoundation
 import Dependencies
 
 private let logger = DLogger(identifier: String(describing: AudioPlayerClient.self))

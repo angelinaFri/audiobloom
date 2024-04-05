@@ -16,6 +16,7 @@ AudioBloom is a simple, intuitive application designed for audiobook enthusiasts
 - Fix issue with autoplay in reader mode while swiping chapters not working.
 - Cover with more integration tests.
 - Split the project into modules using SPM (Swift Package Manager).
+- Sort out internal task list, and manage the app's various state conditions more effectively.
 
 ## Technologies Used
 

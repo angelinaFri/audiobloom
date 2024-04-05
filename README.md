@@ -11,6 +11,12 @@ AudioBloom is a simple, intuitive application designed for audiobook enthusiasts
 - **Playback Speed Control:** Adjust the speed of audio playback to suit your listening preferences.
 - **Audio Skipping:** Jump forward or backward in the audio track to replay or skip sections.
 
+### TODO
+
+- Fix issue with autoplay in reader mode while swiping chapters not working.
+- Cover with more integration tests.
+- Split the project into modules using SPM (Swift Package Manager).
+
 ## Technologies Used
 
 - **UI:** SwiftUI
@@ -20,8 +26,9 @@ AudioBloom is a simple, intuitive application designed for audiobook enthusiasts
 
 ### Installation
 
-To get a local copy up and running follow these simple steps:
+To get a local copy up and running, follow these simple steps:
 
 ```bash
 # Clone the repository
 git clone https://github.com/angelinaFri/audiobloom.git
+
